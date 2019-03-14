@@ -393,7 +393,7 @@ static NSData *aes_iv(void)
         BOOL isRollBack = NO;
         @try
         {
-            NSString *querySql = NSStringFormat(@"SELECT * FROM %@ ORDER BY _date DESC LIMIT %ld OFFSET %ld", table, size, size * page);
+            NSString *querySql = NSStringFormat(@"SELECT * FROM %@ ORDER BY _date DESC LIMIT %ld OFFSET %ld", table, (unsigned long)size, (unsigned long)size * page);
             FMResultSet *result = [db executeQuery:querySql];
             
             while ([result next])

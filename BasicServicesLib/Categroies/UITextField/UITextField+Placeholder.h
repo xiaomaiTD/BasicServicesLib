@@ -10,7 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NSString* NSTextFieldPlacholderKeypath;
+typedef NSString * NSTextFieldPlacholderKeypath;
+
 UIKIT_EXTERN NSTextFieldPlacholderKeypath const kTextFieldPlaceholderKeypathColorName;
 UIKIT_EXTERN NSTextFieldPlacholderKeypath const kTextFieldPlaceholderKeypathFontName;
 

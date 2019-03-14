@@ -142,6 +142,7 @@ Pod::Spec.new do |s|
 		ss.subspec 'NSString' do |sss|
       			sss.source_files = 'BasicServicesLib/Categroies/NSString/*.{h,m}'
       			sss.public_header_files = 'BasicServicesLib/Categroies/NSString/*.h'
+			sss.dependency 'BasicServicesLib/AppBase'
 			sss.dependency 'BasicServicesLib/Categroies/NSData'
 		end
 
