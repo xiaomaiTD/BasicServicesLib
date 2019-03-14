@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "BasicServicesLib"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "The basic service component of the project."
 
   # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   The basic service component of the project. The basic service component of the project.
 		   DESC
 
-  s.homepage     = "https://github.com/qiancaox/BasicServicesLib.git"
+  s.homepage     = "https://cocoapods.org/pods/BasicServicesLib"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 

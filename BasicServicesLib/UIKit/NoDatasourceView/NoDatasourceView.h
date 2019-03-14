@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setMessage:(nonnull NSString *)message;
 - (void)setRetryText:(nonnull NSString *)text;
 
+- (void)setRetryAction:(dispatch_block_t)action;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, NoDatasourceType) {
 
 - (void)setMessage:(NSString *)message type:(NoDatasourceType)type;
 - (void)setHiddenNoDatasource;
+- (void)setRetryBlockIfNeeded:(dispatch_block_t)block;
 
 @end
 

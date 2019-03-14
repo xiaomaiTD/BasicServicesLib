@@ -11,6 +11,12 @@
 #import "UIView+CGRect.h"
 #import "NSString+Size.h"
 
+@interface NoDatasourceView ()
+
+@property(copy, nonatomic) dispatch_block_t action;
+
+@end
+
 @implementation NoDatasourceView {
     __weak UIImageView *_imageView;
     __weak UILabel *_label;
@@ -76,6 +82,7 @@
     if (_retryButton == nil)
     {
         UIButton *retryButton = [[UIButton alloc] init];
+        [retryButton addTarget:self action:@selector(retryAction:) forControlEvents:UIControlEventTouchUpInside];
         retryButton.height = 35;
         retryButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
         [retryButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
@@ -85,6 +92,18 @@
     }
     [_retryButton setTitle:text forState:UIControlStateNormal];
     [self layoutIfNeeded];
+}
+
+- (void)setRetryAction:(dispatch_block_t)action
+{
+    _action = action;
+}
+
+- (void)retryAction:(UIButton *)sender
+{
+    if (_action) {
+        _action();
+    }
 }
 
 @end

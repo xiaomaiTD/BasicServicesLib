@@ -46,6 +46,7 @@ static char * const kNoDatasourceEmptyViewAssociateKey = "\0";
 static char * const kNoDatasourceErrorViewAssociateKey = "\1";
 static char * const kNoDatasourceEmptyViewShownAssociateKey = "\2";
 static char * const kNoDatasourceErrorViewShownAssociateKey = "\3";
+static char * const kRetryBlockAssociateKey = "\4";
 
 + (void)load
 {
@@ -77,6 +78,7 @@ static char * const kNoDatasourceErrorViewShownAssociateKey = "\3";
         error = [NoDatasourceView showInView:self];
         [error setImage:[NSBundle emptyErrorImage]];
         [error setRetryText:@"重新加载"];
+        [error setRetryAction:[self retryBlock]];
         error.hidden = YES;
         [self addSubview:error];
         objc_setAssociatedObject(self, kNoDatasourceErrorViewAssociateKey, error, OBJC_ASSOCIATION_ASSIGN);
@@ -189,6 +191,16 @@ static char * const kNoDatasourceErrorViewShownAssociateKey = "\3";
         [[self emtpyView] setHidden:YES];
         [self setIsEmptyViewShown:NO];
     }
+}
+
+- (void)setRetryBlockIfNeeded:(dispatch_block_t)block
+{
+    objc_setAssociatedObject(self, kRetryBlockAssociateKey, block, OBJC_ASSOCIATION_COPY);
+}
+
+- (dispatch_block_t)retryBlock
+{
+    return objc_getAssociatedObject(self, kRetryBlockAssociateKey);
 }
 
 @end
