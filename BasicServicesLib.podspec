@@ -203,11 +203,6 @@ Pod::Spec.new do |s|
   	ss.dependency "AFNetworking", "~> 3.2.1"
   end
 
-  s.subspec 'Privates' do |ss|
-  	ss.source_files = 'BasicServicesLib/Privates/*.{h,m}'
-  	ss.public_header_files = 'BasicServicesLib/Privates/*.h'
-  end
-
   s.subspec 'Database' do |ss|
   	ss.source_files = 'BasicServicesLib/Database/*.{h,m}'
   	ss.public_header_files = 'BasicServicesLib/Database/*.h'
@@ -217,6 +212,11 @@ Pod::Spec.new do |s|
   	ss.dependency "FMDB", "~> 2.7.5"
   end
 
+  s.subspec 'Privates' do |ss|
+  	ss.source_files = 'BasicServicesLib/Privates/*.{h,m}'
+  	ss.public_header_files = 'BasicServicesLib/Privates/*.h'
+	ss.dependency 'BasicServicesLib/Database'
+  end
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
