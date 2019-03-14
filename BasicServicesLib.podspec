@@ -97,7 +97,6 @@ Pod::Spec.new do |s|
   s.subspec 'AppBase' do |ss|
   	ss.source_files = 'BasicServicesLib/AppBase/*.{h,m}'
   	ss.public_header_files = 'BasicServicesLib/AppBase/*.h'
-  	ss.frameworks = 'UIKit'
   end
 
   s.subspec 'Categroies' do |ss|
@@ -215,7 +214,7 @@ Pod::Spec.new do |s|
   #
 
   # s.framework  = "SomeFramework"
-  # s.frameworks = "SomeFramework", "AnotherFramework"
+  s.frameworks = "UIKit", "Foundation"
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
