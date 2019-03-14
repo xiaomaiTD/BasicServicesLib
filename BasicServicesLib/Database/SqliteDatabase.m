@@ -101,11 +101,12 @@ static NSData *aes_iv(void)
 
 - (NSInteger)bytes
 {
+    NSInteger bytes = 0;
     NSFileManager *manager = [NSFileManager defaultManager];
     if ([manager fileExistsAtPath:[self dbPath]]) {
-        return [[manager attributesOfItemAtPath:[self dbPath] error:nil] fileSize];
+        bytes = (NSInteger)[[manager attributesOfItemAtPath:[self dbPath] error:nil] fileSize];
     }
-    return 0;
+    return bytes;
 }
 
 - (NSArray *)tables
