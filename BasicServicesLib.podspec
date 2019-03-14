@@ -159,12 +159,15 @@ Pod::Spec.new do |s|
       			sss.source_files = 'BasicServicesLib/UIKit/UIPlaceholderTextView/*.{h,m}'
       			sss.public_header_files = 'BasicServicesLib/UIKit/UIPlaceholderTextView/*.h'
 			sss.dependency 'BasicServicesLib/Categroies/NSString'
+			sss.dependency 'BasicServicesLib/AppBase'
+			sss.dependency 'BasicServicesLib/Categroies/UIView'
 		end
 
 		ss.subspec 'UIRelayoutButton' do |sss|
       			sss.source_files = 'BasicServicesLib/UIKit/UIRelayoutButton/*.{h,m}'
       			sss.public_header_files = 'BasicServicesLib/UIKit/UIRelayoutButton/*.h'
 			sss.dependency 'BasicServicesLib/AppBase'
+			sss.dependency 'BasicServicesLib/Categroies/UIView'
 		end
 
 		ss.subspec 'PresentedHUDBasicViewController' do |sss|
@@ -177,6 +180,8 @@ Pod::Spec.new do |s|
       			sss.public_header_files = 'BasicServicesLib/UIKit/NoDatasourceView/*.h'
 			sss.dependency 'BasicServicesLib/Privates'
 			sss.dependency 'BasicServicesLib/AppBase'
+			sss.dependency 'BasicServicesLib/Categroies/UIView'
+			sss.dependency 'BasicServicesLib/Categroies/NSString'
 		end
 
   end
