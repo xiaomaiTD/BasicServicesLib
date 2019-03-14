@@ -101,8 +101,6 @@ Pod::Spec.new do |s|
 
   s.subspec 'Categroies' do |ss|
 
-  		ss.frameworks = "UIKit", "Foundation"
-
 		ss.subspec 'UIButton' do |sss|
       			sss.source_files = 'BasicServicesLib/Categroies/UIButton/*.{h,m}'
       			sss.public_header_files = 'BasicServicesLib/Categroies/UIButton/*.h'
@@ -131,11 +129,13 @@ Pod::Spec.new do |s|
 		ss.subspec 'UIView' do |sss|
       			sss.source_files = 'BasicServicesLib/Categroies/UIView/*.{h,m}'
       			sss.public_header_files = 'BasicServicesLib/Categroies/UIView/*.h'
+			sss.dependency 'BasicServicesLib/AppBase'
 		end
 
 		ss.subspec 'NSString' do |sss|
       			sss.source_files = 'BasicServicesLib/Categroies/NSString/*.{h,m}'
       			sss.public_header_files = 'BasicServicesLib/Categroies/NSString/*.h'
+			sss.dependency 'BasicServicesLib/Categroies/NSData'
 		end
 
 		ss.subspec 'NSData' do |sss|
@@ -146,6 +146,7 @@ Pod::Spec.new do |s|
 		ss.subspec 'NSDictionary' do |sss|
       			sss.source_files = 'BasicServicesLib/Categroies/NSDictionary/*.{h,m}'
       			sss.public_header_files = 'BasicServicesLib/Categroies/NSDictionary/*.h'
+			sss.dependency 'BasicServicesLib/AppBase'
 		end
 
   end
@@ -155,11 +156,13 @@ Pod::Spec.new do |s|
 		ss.subspec 'UIPlaceholderTextView' do |sss|
       			sss.source_files = 'BasicServicesLib/UIKit/UIPlaceholderTextView/*.{h,m}'
       			sss.public_header_files = 'BasicServicesLib/UIKit/UIPlaceholderTextView/*.h'
+			sss.dependency 'BasicServicesLib/Categroies/NSString'
 		end
 
 		ss.subspec 'UIRelayoutButton' do |sss|
       			sss.source_files = 'BasicServicesLib/UIKit/UIRelayoutButton/*.{h,m}'
       			sss.public_header_files = 'BasicServicesLib/UIKit/UIRelayoutButton/*.h'
+			sss.dependency 'BasicServicesLib/AppBase'
 		end
 
 		ss.subspec 'PresentedHUDBasicViewController' do |sss|
@@ -170,6 +173,8 @@ Pod::Spec.new do |s|
 		ss.subspec 'NoDatasourceView' do |sss|
       			sss.source_files = 'BasicServicesLib/UIKit/NoDatasourceView/*.{h,m}'
       			sss.public_header_files = 'BasicServicesLib/UIKit/NoDatasourceView/*.h'
+			sss.dependency 'BasicServicesLib/Privates'
+			sss.dependency 'BasicServicesLib/AppBase'
 		end
 
   end
@@ -177,11 +182,13 @@ Pod::Spec.new do |s|
   s.subspec 'Utils' do |ss|
   	ss.source_files = 'BasicServicesLib/Utils/*.{h,m}'
   	ss.public_header_files = 'BasicServicesLib/Utils/*.h'
+	ss.dependency 'BasicServicesLib/AppBase'
   end
 
   s.subspec 'Networking' do |ss|
   	ss.source_files = 'BasicServicesLib/Networking/*.{h,m}'
   	ss.public_header_files = 'BasicServicesLib/Networking/*.h'
+	ss.dependency 'BasicServicesLib/Categroies/NSDictionary'
   end
 
   s.subspec 'Privates' do |ss|
@@ -192,6 +199,7 @@ Pod::Spec.new do |s|
   s.subspec 'Database' do |ss|
   	ss.source_files = 'BasicServicesLib/Database/*.{h,m}'
   	ss.public_header_files = 'BasicServicesLib/Database/*.h'
+	ss.dependency 'BasicServicesLib/AppBase'
   end
 
 
