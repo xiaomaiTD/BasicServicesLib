@@ -164,6 +164,141 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8C8016C1223A02D3001B02DF /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				8CF6969E2239FAF000DCECC7 /* NSString+Size.h */,
+				8CF696A92239FAF000DCECC7 /* NSString+Size.m */,
+				8CF696982239FAF000DCECC7 /* NSString+UIColor.h */,
+				8CF696AF2239FAF000DCECC7 /* NSString+UIColor.m */,
+				8CF696A22239FAF000DCECC7 /* NSString+Base64.h */,
+				8CF6968E2239FAF000DCECC7 /* NSString+Base64.m */,
+				8CF696A02239FAF000DCECC7 /* NSString+Encrypt.h */,
+				8CF696902239FAF000DCECC7 /* NSString+Encrypt.m */,
+				8CF696A72239FAF000DCECC7 /* NSString+Pinyin.h */,
+				8CF696932239FAF000DCECC7 /* NSString+Pinyin.m */,
+			);
+			path = NSString;
+			sourceTree = "<group>";
+		};
+		8C8016C2223A032A001B02DF /* NSData */ = {
+			isa = PBXGroup;
+			children = (
+				8CF696942239FAF000DCECC7 /* NSData+Encrypt.h */,
+				8CF696A52239FAF000DCECC7 /* NSData+Encrypt.m */,
+				8CF6969C2239FAF000DCECC7 /* NSData+Base64.h */,
+				8CF696AB2239FAF000DCECC7 /* NSData+Base64.m */,
+			);
+			path = NSData;
+			sourceTree = "<group>";
+		};
+		8C8016C3223A0347001B02DF /* NSDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				8CF696992239FAF000DCECC7 /* NSDictionary+KeyValueAddition.h */,
+				8CF696AE2239FAF000DCECC7 /* NSDictionary+KeyValueAddition.m */,
+			);
+			path = NSDictionary;
+			sourceTree = "<group>";
+		};
+		8C8016C4223A0353001B02DF /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				8CF696A12239FAF000DCECC7 /* UIView+CGRect.h */,
+				8CF6968F2239FAF000DCECC7 /* UIView+CGRect.m */,
+				8CF696912239FAF000DCECC7 /* UIView+CornerRadius.h */,
+				8CF6969F2239FAF000DCECC7 /* UIView+CornerRadius.m */,
+				8CF696972239FAF000DCECC7 /* UIView+UIViewController.h */,
+				8CF696A32239FAF000DCECC7 /* UIView+UIViewController.m */,
+				8CF6969D2239FAF000DCECC7 /* UIView+UINib.h */,
+				8CF696AA2239FAF000DCECC7 /* UIView+UINib.m */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		8C8016C5223A037F001B02DF /* UITextField */ = {
+			isa = PBXGroup;
+			children = (
+				8CF6969A2239FAF000DCECC7 /* UITextField+Placeholder.m */,
+				8CF696AD2239FAF000DCECC7 /* UITextField+Placeholder.h */,
+			);
+			path = UITextField;
+			sourceTree = "<group>";
+		};
+		8C8016C6223A038D001B02DF /* UIButton */ = {
+			isa = PBXGroup;
+			children = (
+				8CF696962239FAF000DCECC7 /* UIButton+StateColor.h */,
+				8CF696A42239FAF000DCECC7 /* UIButton+StateColor.m */,
+			);
+			path = UIButton;
+			sourceTree = "<group>";
+		};
+		8C8016C7223A0399001B02DF /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				8CF6969B2239FAF000DCECC7 /* UIImage+UIColor.h */,
+				8CF696AC2239FAF000DCECC7 /* UIImage+UIColor.m */,
+			);
+			path = UIImage;
+			sourceTree = "<group>";
+		};
+		8C8016C8223A03A2001B02DF /* UIAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				8CF696922239FAF000DCECC7 /* UIAlertController+Shortcut.h */,
+				8CF696A82239FAF000DCECC7 /* UIAlertController+Shortcut.m */,
+			);
+			path = UIAlertController;
+			sourceTree = "<group>";
+		};
+		8C8016C9223A03C5001B02DF /* UIWindow */ = {
+			isa = PBXGroup;
+			children = (
+				8CF696A62239FAF000DCECC7 /* UIWindow+TransitionRootVc.h */,
+				8CF696952239FAF000DCECC7 /* UIWindow+TransitionRootVc.m */,
+			);
+			path = UIWindow;
+			sourceTree = "<group>";
+		};
+		8C8016CA223A03FE001B02DF /* UIPlaceholderTextView */ = {
+			isa = PBXGroup;
+			children = (
+				8CF696B22239FAF000DCECC7 /* UIPlaceholderTextView.h */,
+				8CF696B72239FAF000DCECC7 /* UIPlaceholderTextView.m */,
+			);
+			path = UIPlaceholderTextView;
+			sourceTree = "<group>";
+		};
+		8C8016CB223A040C001B02DF /* UIRelayoutButton */ = {
+			isa = PBXGroup;
+			children = (
+				8CF696BB2239FAF000DCECC7 /* UIRelayoutButton.h */,
+				8CF696B32239FAF000DCECC7 /* UIRelayoutButton.m */,
+			);
+			path = UIRelayoutButton;
+			sourceTree = "<group>";
+		};
+		8C8016CC223A041D001B02DF /* PresentedHUDBasicViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8CF696B62239FAF000DCECC7 /* PresentedHUDBasicViewController.h */,
+				8CF696B82239FAF000DCECC7 /* PresentedHUDBasicViewController.m */,
+			);
+			path = PresentedHUDBasicViewController;
+			sourceTree = "<group>";
+		};
+		8C8016CD223A0437001B02DF /* NoDatasourceView */ = {
+			isa = PBXGroup;
+			children = (
+				8CF696BA2239FAF000DCECC7 /* UIView+NoDatasource.h */,
+				8CF696B42239FAF000DCECC7 /* UIView+NoDatasource.m */,
+				8CF696B52239FAF000DCECC7 /* NoDatasourceView.h */,
+				8CF696B92239FAF000DCECC7 /* NoDatasourceView.m */,
+			);
+			path = NoDatasourceView;
+			sourceTree = "<group>";
+		};
 		8CD3BE1C2227787600006DEA = {
 			isa = PBXGroup;
 			children = (
@@ -205,13 +340,13 @@
 		8CF696862239FAF000DCECC7 /* BasicServicesLib */ = {
 			isa = PBXGroup;
 			children = (
+				8CF696C92239FAF000DCECC7 /* BasicServicesLib.h */,
+				8CF696B02239FAF000DCECC7 /* BasicServicesLib.bundle */,
 				8CF696872239FAF000DCECC7 /* Database */,
 				8CF6968A2239FAF000DCECC7 /* Privates */,
 				8CF6968D2239FAF000DCECC7 /* Categroies */,
-				8CF696B02239FAF000DCECC7 /* BasicServicesLib.bundle */,
 				8CF696B12239FAF000DCECC7 /* UIKit */,
 				8CF696BC2239FAF000DCECC7 /* Networking */,
-				8CF696C92239FAF000DCECC7 /* BasicServicesLib.h */,
 				8CF696CA2239FAF000DCECC7 /* Utils */,
 				8CF696D12239FAF000DCECC7 /* AppBase */,
 			);
@@ -239,40 +374,15 @@
 		8CF6968D2239FAF000DCECC7 /* Categroies */ = {
 			isa = PBXGroup;
 			children = (
-				8CF6968E2239FAF000DCECC7 /* NSString+Base64.m */,
-				8CF6968F2239FAF000DCECC7 /* UIView+CGRect.m */,
-				8CF696902239FAF000DCECC7 /* NSString+Encrypt.m */,
-				8CF696912239FAF000DCECC7 /* UIView+CornerRadius.h */,
-				8CF696922239FAF000DCECC7 /* UIAlertController+Shortcut.h */,
-				8CF696932239FAF000DCECC7 /* NSString+Pinyin.m */,
-				8CF696942239FAF000DCECC7 /* NSData+Encrypt.h */,
-				8CF696952239FAF000DCECC7 /* UIWindow+TransitionRootVc.m */,
-				8CF696962239FAF000DCECC7 /* UIButton+StateColor.h */,
-				8CF696972239FAF000DCECC7 /* UIView+UIViewController.h */,
-				8CF696982239FAF000DCECC7 /* NSString+UIColor.h */,
-				8CF696992239FAF000DCECC7 /* NSDictionary+KeyValueAddition.h */,
-				8CF6969A2239FAF000DCECC7 /* UITextField+Placeholder.m */,
-				8CF6969B2239FAF000DCECC7 /* UIImage+UIColor.h */,
-				8CF6969C2239FAF000DCECC7 /* NSData+Base64.h */,
-				8CF6969D2239FAF000DCECC7 /* UIView+UINib.h */,
-				8CF6969E2239FAF000DCECC7 /* NSString+Size.h */,
-				8CF6969F2239FAF000DCECC7 /* UIView+CornerRadius.m */,
-				8CF696A02239FAF000DCECC7 /* NSString+Encrypt.h */,
-				8CF696A12239FAF000DCECC7 /* UIView+CGRect.h */,
-				8CF696A22239FAF000DCECC7 /* NSString+Base64.h */,
-				8CF696A32239FAF000DCECC7 /* UIView+UIViewController.m */,
-				8CF696A42239FAF000DCECC7 /* UIButton+StateColor.m */,
-				8CF696A52239FAF000DCECC7 /* NSData+Encrypt.m */,
-				8CF696A62239FAF000DCECC7 /* UIWindow+TransitionRootVc.h */,
-				8CF696A72239FAF000DCECC7 /* NSString+Pinyin.h */,
-				8CF696A82239FAF000DCECC7 /* UIAlertController+Shortcut.m */,
-				8CF696A92239FAF000DCECC7 /* NSString+Size.m */,
-				8CF696AA2239FAF000DCECC7 /* UIView+UINib.m */,
-				8CF696AB2239FAF000DCECC7 /* NSData+Base64.m */,
-				8CF696AC2239FAF000DCECC7 /* UIImage+UIColor.m */,
-				8CF696AD2239FAF000DCECC7 /* UITextField+Placeholder.h */,
-				8CF696AE2239FAF000DCECC7 /* NSDictionary+KeyValueAddition.m */,
-				8CF696AF2239FAF000DCECC7 /* NSString+UIColor.m */,
+				8C8016C9223A03C5001B02DF /* UIWindow */,
+				8C8016C1223A02D3001B02DF /* NSString */,
+				8C8016C8223A03A2001B02DF /* UIAlertController */,
+				8C8016C7223A0399001B02DF /* UIImage */,
+				8C8016C6223A038D001B02DF /* UIButton */,
+				8C8016C5223A037F001B02DF /* UITextField */,
+				8C8016C4223A0353001B02DF /* UIView */,
+				8C8016C3223A0347001B02DF /* NSDictionary */,
+				8C8016C2223A032A001B02DF /* NSData */,
 			);
 			path = Categroies;
 			sourceTree = "<group>";
@@ -280,16 +390,10 @@
 		8CF696B12239FAF000DCECC7 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				8CF696B22239FAF000DCECC7 /* UIPlaceholderTextView.h */,
-				8CF696B32239FAF000DCECC7 /* UIRelayoutButton.m */,
-				8CF696B42239FAF000DCECC7 /* UIView+NoDatasource.m */,
-				8CF696B52239FAF000DCECC7 /* NoDatasourceView.h */,
-				8CF696B62239FAF000DCECC7 /* PresentedHUDBasicViewController.h */,
-				8CF696B72239FAF000DCECC7 /* UIPlaceholderTextView.m */,
-				8CF696B82239FAF000DCECC7 /* PresentedHUDBasicViewController.m */,
-				8CF696B92239FAF000DCECC7 /* NoDatasourceView.m */,
-				8CF696BA2239FAF000DCECC7 /* UIView+NoDatasource.h */,
-				8CF696BB2239FAF000DCECC7 /* UIRelayoutButton.h */,
+				8C8016CD223A0437001B02DF /* NoDatasourceView */,
+				8C8016CC223A041D001B02DF /* PresentedHUDBasicViewController */,
+				8C8016CB223A040C001B02DF /* UIRelayoutButton */,
+				8C8016CA223A03FE001B02DF /* UIPlaceholderTextView */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";

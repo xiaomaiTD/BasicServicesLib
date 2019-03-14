@@ -129,7 +129,7 @@ Pod::Spec.new do |s|
 
 		ss.subspec 'UIView' do |sss|
       			sss.source_files = 'BasicServicesLib/Categroies/UIView+*.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/Categroies/UIView+*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Categroies/UIView+*.h'
 		end
 
 		ss.subspec 'NSString' do |sss|
