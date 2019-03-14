@@ -218,8 +218,8 @@
 		8C8016C5223A037F001B02DF /* UITextField */ = {
 			isa = PBXGroup;
 			children = (
-				8CF6969A2239FAF000DCECC7 /* UITextField+Placeholder.m */,
 				8CF696AD2239FAF000DCECC7 /* UITextField+Placeholder.h */,
+				8CF6969A2239FAF000DCECC7 /* UITextField+Placeholder.m */,
 			);
 			path = UITextField;
 			sourceTree = "<group>";

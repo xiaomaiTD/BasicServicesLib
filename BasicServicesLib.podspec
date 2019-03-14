@@ -124,6 +124,7 @@ Pod::Spec.new do |s|
 		ss.subspec 'UIImage' do |sss|
       			sss.source_files = 'BasicServicesLib/Categroies/UIImage/*.{h,m}'
       			sss.public_header_files = 'BasicServicesLib/Categroies/UIImage/*.h'
+			sss.dependency 'BasicServicesLib/AppBase'
 		end
 
 		ss.subspec 'UIButton' do |sss|
@@ -184,12 +185,14 @@ Pod::Spec.new do |s|
   	ss.source_files = 'BasicServicesLib/Utils/*.{h,m}'
   	ss.public_header_files = 'BasicServicesLib/Utils/*.h'
 	ss.dependency 'BasicServicesLib/AppBase'
+  	ss.dependency "MBProgressHUD", "~> 1.1.0"
   end
 
   s.subspec 'Networking' do |ss|
   	ss.source_files = 'BasicServicesLib/Networking/*.{h,m}'
   	ss.public_header_files = 'BasicServicesLib/Networking/*.h'
 	ss.dependency 'BasicServicesLib/Categroies/NSDictionary'
+  	ss.dependency "AFNetworking", "~> 3.2.1"
   end
 
   s.subspec 'Privates' do |ss|
@@ -202,6 +205,7 @@ Pod::Spec.new do |s|
   	ss.public_header_files = 'BasicServicesLib/Database/*.h'
 	ss.dependency 'BasicServicesLib/AppBase'
 	ss.dependency 'BasicServicesLib/Categroies/NSString'
+  	ss.dependency "FMDB", "~> 2.7.5"
   end
 
 
@@ -241,8 +245,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  s.dependency "AFNetworking", "~> 3.2.1"
-  s.dependency "FMDB", "~> 2.7.5"
-  s.dependency "MBProgressHUD", "~> 1.1.0"
 
 end
