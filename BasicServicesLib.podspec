@@ -190,12 +190,14 @@ Pod::Spec.new do |s|
   	ss.source_files = 'BasicServicesLib/Utils/*.{h,m}'
   	ss.public_header_files = 'BasicServicesLib/Utils/*.h'
 	ss.dependency 'BasicServicesLib/AppBase'
+	ss.dependency 'BasicServicesLib/Privates'
   	ss.dependency "MBProgressHUD", "~> 1.1.0"
   end
 
   s.subspec 'Networking' do |ss|
   	ss.source_files = 'BasicServicesLib/Networking/*.{h,m}'
   	ss.public_header_files = 'BasicServicesLib/Networking/*.h'
+	ss.dependency 'BasicServicesLib/AppBase'
 	ss.dependency 'BasicServicesLib/Categroies/NSDictionary'
   	ss.dependency "AFNetworking", "~> 3.2.1"
   end
@@ -209,6 +211,7 @@ Pod::Spec.new do |s|
   	ss.source_files = 'BasicServicesLib/Database/*.{h,m}'
   	ss.public_header_files = 'BasicServicesLib/Database/*.h'
 	ss.dependency 'BasicServicesLib/AppBase'
+	ss.dependency 'BasicServicesLib/Categroies/NSDictionary'
 	ss.dependency 'BasicServicesLib/Categroies/NSString'
   	ss.dependency "FMDB", "~> 2.7.5"
   end
