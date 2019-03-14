@@ -200,7 +200,7 @@ Pod::Spec.new do |s|
   	ss.source_files = 'BasicServicesLib/Database/*.{h,m}'
   	ss.public_header_files = 'BasicServicesLib/Database/*.h'
 	ss.dependency 'BasicServicesLib/AppBase'
-	ss.dependency 'BasicServicesLib/Categories/NSString'
+	ss.dependency 'BasicServicesLib/Categroies/NSString'
   end
 
 
