@@ -163,7 +163,7 @@ Pod::Spec.new do |s|
 
 		ss.subspec 'PresentedHUDBasicViewController' do |sss|
       			sss.source_files = 'BasicServicesLib/UIKit/PresentedHUDBasicViewController.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/CUIKit/PresentedHUDBasicViewController.h'
+      			sss.public_header_files = 'BasicServicesLib/UIKit/PresentedHUDBasicViewController.h'
 		end
 
 		ss.subspec 'NoDatasourceView' do |sss|
