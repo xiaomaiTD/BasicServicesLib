@@ -101,6 +101,8 @@ Pod::Spec.new do |s|
 
   s.subspec 'Categroies' do |ss|
 
+  		ss.frameworks = "UIKit", "Foundation"
+
 		ss.subspec 'UIButton' do |sss|
       			sss.source_files = 'BasicServicesLib/Categroies/UIButton/*.{h,m}'
       			sss.public_header_files = 'BasicServicesLib/Categroies/UIButton/*.h'
