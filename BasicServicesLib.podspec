@@ -103,48 +103,48 @@ Pod::Spec.new do |s|
   s.subspec 'Categroies' do |ss|
 
 		ss.subspec 'UIButton' do |sss|
-      			sss.source_files = 'BasicServicesLib/Categroies/UIButton+*.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/Categroies/UIButton+*.h'
+      			sss.source_files = 'BasicServicesLib/Categroies/UIButton/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Categroies/UIButton/*.h'
 		end
 
 		ss.subspec 'UITextField' do |sss|
-      			sss.source_files = 'BasicServicesLib/Categroies/UITextField+*.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/Categroies/UITextField+*.h'
+      			sss.source_files = 'BasicServicesLib/Categroies/UITextField/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Categroies/UITextField/*.h'
 		end
 
 		ss.subspec 'UIAlertController' do |sss|
-      			sss.source_files = 'BasicServicesLib/Categroies/UIAlertController+*.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/Categroies/UIAlertController+*.h'
+      			sss.source_files = 'BasicServicesLib/Categroies/UIAlertController/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Categroies/UIAlertController/*.h'
 		end
 
 		ss.subspec 'UIWindow' do |sss|
-      			sss.source_files = 'BasicServicesLib/Categroies/UIWindow+*.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/Categroies/UIWindow+*.h'
+      			sss.source_files = 'BasicServicesLib/Categroies/UIWindow/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Categroies/UIWindow/*.h'
 		end
 
 		ss.subspec 'UIImage' do |sss|
-      			sss.source_files = 'BasicServicesLib/Categroies/UIImage+*.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/Categroies/UIImage+*.h'
+      			sss.source_files = 'BasicServicesLib/Categroies/UIImage/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Categroies/UIImage/*.h'
 		end
 
 		ss.subspec 'UIView' do |sss|
-      			sss.source_files = 'BasicServicesLib/Categroies/UIView+*.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/Categroies/UIView+*.h'
+      			sss.source_files = 'BasicServicesLib/Categroies/UIView/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Categroies/UIView/*.h'
 		end
 
 		ss.subspec 'NSString' do |sss|
-      			sss.source_files = 'BasicServicesLib/Categroies/NSString+*.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/Categroies/NSString+*.h'
+      			sss.source_files = 'BasicServicesLib/Categroies/NSString/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Categroies/NSString/*.h'
 		end
 
 		ss.subspec 'NSData' do |sss|
-      			sss.source_files = 'BasicServicesLib/Categroies/NSData+*.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/Categroies/NSData+*.h'
+      			sss.source_files = 'BasicServicesLib/Categroies/NSData/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Categroies/NSData/*.h'
 		end
 
 		ss.subspec 'NSDictionary' do |sss|
-      			sss.source_files = 'BasicServicesLib/Categroies/NSDictionary+*.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/Categroies/NSDictionary+*.h'
+      			sss.source_files = 'BasicServicesLib/Categroies/NSDictionary/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Categroies/NSDictionary/*.h'
 		end
 
   end
@@ -152,23 +152,23 @@ Pod::Spec.new do |s|
   s.subspec 'UIKit' do |ss|
 
 		ss.subspec 'UIPlaceholderTextView' do |sss|
-      			sss.source_files = 'BasicServicesLib/UIKit/UIPlaceholderTextView.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/UIKit/UIPlaceholderTextView.h'
+      			sss.source_files = 'BasicServicesLib/UIKit/UIPlaceholderTextView/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/UIKit/UIPlaceholderTextView/*.h'
 		end
 
 		ss.subspec 'UIRelayoutButton' do |sss|
-      			sss.source_files = 'BasicServicesLib/UIKit/UIRelayoutButton.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/UIKit/UIRelayoutButton.h'
+      			sss.source_files = 'BasicServicesLib/UIKit/UIRelayoutButton/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/UIKit/UIRelayoutButton/*.h'
 		end
 
 		ss.subspec 'PresentedHUDBasicViewController' do |sss|
-      			sss.source_files = 'BasicServicesLib/UIKit/PresentedHUDBasicViewController.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/UIKit/PresentedHUDBasicViewController.h'
+      			sss.source_files = 'BasicServicesLib/UIKit/PresentedHUDBasicViewController/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/UIKit/PresentedHUDBasicViewController/*.h'
 		end
 
 		ss.subspec 'NoDatasourceView' do |sss|
-      			sss.source_files = 'BasicServicesLib/UIKit/NoDatasourceView.{h,m}', 'BasicServicesLib/UIKit/UIView+NoDatasource.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/UIKit/NoDatasourceView.h', 'BasicServicesLib/UIKit/UIView+NoDatasource.h'
+      			sss.source_files = 'BasicServicesLib/UIKit/NoDatasourceView/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/UIKit/NoDatasourceView/*.h'
 		end
 
   end
