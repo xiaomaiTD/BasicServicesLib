@@ -106,6 +106,11 @@ Pod::Spec.new do |s|
       			sss.public_header_files = 'BasicServicesLib/Categroies/UIButton/*.h'
 		end
 
+		ss.subspec 'NSData' do |sss|
+      			sss.source_files = 'BasicServicesLib/Categroies/NSData/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Categroies/NSData/*.h'
+		end
+
 		ss.subspec 'UITextField' do |sss|
       			sss.source_files = 'BasicServicesLib/Categroies/UITextField/*.{h,m}'
       			sss.public_header_files = 'BasicServicesLib/Categroies/UITextField/*.h'
@@ -136,11 +141,6 @@ Pod::Spec.new do |s|
       			sss.source_files = 'BasicServicesLib/Categroies/NSString/*.{h,m}'
       			sss.public_header_files = 'BasicServicesLib/Categroies/NSString/*.h'
 			sss.dependency 'BasicServicesLib/Categroies/NSData'
-		end
-
-		ss.subspec 'NSData' do |sss|
-      			sss.source_files = 'BasicServicesLib/Categroies/NSData/*.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/Categroies/NSData/*.h'
 		end
 
 		ss.subspec 'NSDictionary' do |sss|
