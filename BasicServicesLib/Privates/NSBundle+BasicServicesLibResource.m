@@ -8,6 +8,7 @@
 
 #import "NSBundle+BasicServicesLibResource.h"
 #import "SqliteDatabase.h"
+#import "Macros.h"
 
 @implementation NSBundle (BasicServicesLibResource)
 
@@ -16,8 +17,10 @@
     static NSBundle *libBundle = nil;
     if (libBundle == nil) {
         // 曲线救国，解决pod中无法加载bundle中的图片问题
-        NSBundle *bundle = [NSBundle bundleForClass:NSClassFromString(@"SqliteDatabase")];
+        NSBundle *bundle = [NSBundle bundleForClass:[SqliteDatabase class]];
+        DEV_LOG(@"basicServicesLibBundle.bundle = %@", bundle);
         libBundle = [NSBundle bundleWithPath:[bundle pathForResource:@"BasicServicesLib" ofType:@"bundle"]];
+        DEV_LOG(@"basicServicesLibBundle.libBundle = %@", bundle);
     }
     return libBundle;
 }
