@@ -25,7 +25,7 @@ typedef NSArray<NSDictionary *> * SqliteItems;
 + (instancetype)database;
 
 - (NSString *)dbPath;
-- (NSUInteger)bytes;
+- (NSInteger)bytes;
 - (NSArray *)tables;
 - (void)clear;
 
@@ -39,7 +39,7 @@ typedef NSArray<NSDictionary *> * SqliteItems;
 - (void)insertItems:(SqliteItems)items primeryPath:(nonnull NSString *)primery inTable:(nonnull NSString *)table;
 - (void)removeItems:(SqliteItems)items primeryPath:(nonnull NSString *)primery inTable:(nonnull NSString *)table;
 - (void)updateItems:(SqliteItems)items primeryPath:(nonnull NSString *)primery inTable:(nonnull NSString *)table;
-- (SqliteItems)getItemsInTable:(NSString *)table size:(NSUInteger)size page:(NSUInteger)page;
+- (SqliteItems)getItemsInTable:(NSString *)table size:(NSInteger)size page:(NSInteger)page;
 
 /// 登录信息
 - (void)insertLoginWithAccount:(NSString *)account password:(NSString *)psd;

@@ -99,7 +99,7 @@ static NSData *aes_iv(void)
     return _queue.path;
 }
 
-- (NSUInteger)bytes
+- (NSInteger)bytes
 {
     NSFileManager *manager = [NSFileManager defaultManager];
     if ([manager fileExistsAtPath:[self dbPath]]) {
@@ -377,7 +377,7 @@ static NSData *aes_iv(void)
     }];
 }
 
-- (SqliteItems)getItemsInTable:(NSString *)table size:(NSUInteger)size page:(NSUInteger)page
+- (SqliteItems)getItemsInTable:(NSString *)table size:(NSInteger)size page:(NSInteger)page
 {
     if (table == nil || size == 0) {
         return nil;
@@ -393,7 +393,7 @@ static NSData *aes_iv(void)
         BOOL isRollBack = NO;
         @try
         {
-            NSString *querySql = NSStringFormat(@"SELECT * FROM %@ ORDER BY _date DESC LIMIT %lu OFFSET %lu", table, size, size * page);
+            NSString *querySql = NSStringFormat(@"SELECT * FROM %@ ORDER BY _date DESC LIMIT %ld OFFSET %ld", table, size, size * page);
             FMResultSet *result = [db executeQuery:querySql];
             
             while ([result next])

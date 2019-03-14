@@ -101,11 +101,6 @@ Pod::Spec.new do |s|
 
   s.subspec 'Categroies' do |ss|
 
-		ss.subspec 'UIButton' do |sss|
-      			sss.source_files = 'BasicServicesLib/Categroies/UIButton/*.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/Categroies/UIButton/*.h'
-		end
-
 		ss.subspec 'NSData' do |sss|
       			sss.source_files = 'BasicServicesLib/Categroies/NSData/*.{h,m}'
       			sss.public_header_files = 'BasicServicesLib/Categroies/NSData/*.h'
@@ -129,6 +124,12 @@ Pod::Spec.new do |s|
 		ss.subspec 'UIImage' do |sss|
       			sss.source_files = 'BasicServicesLib/Categroies/UIImage/*.{h,m}'
       			sss.public_header_files = 'BasicServicesLib/Categroies/UIImage/*.h'
+		end
+
+		ss.subspec 'UIButton' do |sss|
+      			sss.source_files = 'BasicServicesLib/Categroies/UIButton/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Categroies/UIButton/*.h'
+			sss.dependency 'BasicServicesLib/Categroies/UIImage'
 		end
 
 		ss.subspec 'UIView' do |sss|

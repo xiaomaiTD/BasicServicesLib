@@ -32,7 +32,7 @@
                                                         dispatch_get_main_queue(), \
                                                         AfterBlock)
 
-#define NSStringFormat(Format, ...)      [NSString stringWithFormat:Format, ## __VA_ARGS__]
+#define NSStringFormat(Format, ...)      [NSString stringWithFormat:Format, ##__VA_ARGS__]
 #define NSStringFromUTF8(Char)           [NSString stringWithUTF8String:Char]
 
 #define ColorRGBA(r, g, b, a)       [UIColor colorWithRed:(r / 255.0) green:(g / 255.0) blue:(b / 255.0) alpha:a]
