@@ -14,7 +14,9 @@
 {
     static NSBundle *libBundle = nil;
     if (libBundle == nil) {
-        libBundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"BasicServicesLib" ofType:@"bundle"]];
+        // 曲线救国，解决pod中无法加载bundle中的图片问题
+        NSBundle *bundle = [NSBundle bundleForClass:NSClassFromString(@"DecimalUtil")];
+        libBundle = [NSBundle bundleWithPath:[bundle pathForResource:@"BasicServicesLib" ofType:@"bundle"]];
     }
     return libBundle;
 }
