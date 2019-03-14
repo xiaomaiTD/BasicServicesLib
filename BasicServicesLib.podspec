@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   The basic service component of the project
 		   DESC
 
-  # s.homepage     = "http://EXAMPLE/BasicServicesLib"
+  s.homepage     = "https://github.com/qiancaox/BasicServicesLib.git"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
