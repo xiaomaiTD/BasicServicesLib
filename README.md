@@ -36,3 +36,76 @@ pod 'BasicServicesLib'
 对UIView的扩展，
 - 延展  
 常用的功能扩展，包括十六进制颜色、字符串加/解密、颜色转图片等一系列的积累工具。其中对字典的扩展使用与去模型化。通过路径组合，取到相应的值，而不再需要将字典转化成模型。
+
+## 部分用例
+- 关联性的网络请求  
+例如登录时，我们的逻辑是先用账号密码获取token值，再用token值获取ticket值，ticket和token都将作为后续网络请求的参数存入到header中。通常这种网络请求都会存在block嵌套的操作。由于block嵌套存在各种弊端，这里我将AFN利用型号量实现了异步任务的同步操作。使用如下:  
+
+```
+     [URLSessionTaskResponse setResponseSuccessCode:200 forKeyAddition:@"code"];
+     [URLSessionTaskResponse setResponseErrorMessageKeyAddition:@"msg"];
+    
+     URLSessionTaskURL *url0 = [[URLSessionTaskURL alloc] initWithBaseURL:@"http://sccdev.cd.pangu16.com/passport-server" relativeURL:@"rest/login/loginByName"];
+     URLSessionTaskURL *url1 = [[URLSessionTaskURL alloc] initWithBaseURL:@"http://sccdev.cd.pangu16.com/passport-server" relativeURL:@"rest/auth/getTokenByTicket"];
+    
+     __block URLSessionTaskResponse *response0 = nil;
+     __block URLSessionTaskResponse *response1 = nil;
+    
+    URLSessionChainTask *chainTask = [[URLSessionChainTask alloc] initWithPrepare:^(NSInteger index, URLSessionTask *task) {
+        if (index == 0)
+        {
+            URLSessionTaskParams *params = [[URLSessionTaskParams alloc] initWithParams:@{@"name":@"100021", @"password":@"123456", @"systemCode":@"ISCC_MOBILE"}];
+            task.params = params;
+        }
+        else
+        {
+             URLSessionTaskParams *params = [[URLSessionTaskParams alloc] initWithParams:@{@"ticketId":[response0.response safetyValueForKeyAddition:@"data.ticket"]}];
+            task.method = URLSessionTaskMethodGET;
+            task.params = params;
+        }
+     } progress:^(NSInteger index, double progress) {
+        DEV_LOG(@"progress = %f", progress);
+     } success:^(NSInteger index, URLSessionTaskResponse *response) {
+        if (index == 0) {
+            response0 = response;
+        }
+        else
+        {
+            response1 = response;
+            DEV_LOG(@"%@", response1.response);
+            if (response1.correct) {
+                [MBProgressHUDUtil SuccessWithText:@"登录成功" inView:self.view];
+            }
+        }
+     } failure:^(NSInteger index, NSError *error) {
+        DEV_LOG(@"error = %@", error);
+        [MBProgressHUDUtil ErrorWithText:@"登录失败" inView:self.view];
+     }];
+     [chainTask addTaskURL:url0];
+     [chainTask addTaskURL:url1];
+     [chainTask send];
+    
+     [MBProgressHUDUtil LoadingWithText:@"正在加载..." inView:self.view contentBackgroundColor:[UIColor colorWithWhite:0 alpha:0.8] maskBackground:NO userInteraction:YES];
+```
+这里需要注意的是prepare代码块是在异步线程回调。  
+
+- 视图的部分圆角  
+该方法需要在视图或控制器的`layoutSubviews`中调用：
+
+```
+     [_redView setCorners:UICornerRadiusMake(40, 0, 0, 60)];
+```  
+
+- 支持placeholder的TextView  
+`UIPlaceholderTextView`是一个支持placeholder的TextView，并且支持修改占位符的颜色：  
+
+```
+     _textView.placeholder = @"我是占位符";
+```  
+
+- 无数据时的占位图  
+在网络请求无数据时，一般会有一个占位图显示：  
+
+```
+     [self.view setMessage:@"暂无数据" type:NoDatasourceTypeEmpty];
+```
