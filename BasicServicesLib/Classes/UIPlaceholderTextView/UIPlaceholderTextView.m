@@ -44,8 +44,8 @@
         attrs[NSFontAttributeName] = self.font;
         attrs[NSForegroundColorAttributeName] = self.placeholderColor;
         
-        CGFloat width = [_placeholder boundingSizeWithFont:self.font constrainedToSize:SIze(self.width, self.font.lineHeight)].width;
-        CGRect range = REct(0, 0, width, self.font.lineHeight);
+        CGFloat width = [_placeholder boundingSizeWithFont:self.font constrainedToSize:_CGSize(self.width, self.font.lineHeight)].width;
+        CGRect range = _CGRect(0, 0, width, self.font.lineHeight);
         
         if (self.textAlignment == NSTextAlignmentCenter) {
             range.origin.x = self.width/2-width/2;

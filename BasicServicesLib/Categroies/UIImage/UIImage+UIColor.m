@@ -28,7 +28,7 @@
 
 + (UIImage *)imageWithColor:(UIColor *)aColor
 {
-    return [self imageWithColor:aColor size:SIze(1.0, 1.0)];
+    return [self imageWithColor:aColor size:_CGSize(1.0, 1.0)];
 }
 
 @end

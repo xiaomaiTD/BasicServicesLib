@@ -53,26 +53,26 @@
     switch (style) {
         case UIRelayoutButtonStyleTop:
         {
-            imageEdgeInsets = EDges(-labelHeight-spacing/2.0, 0, 0, -labelWidth);
-            labelEdgeInsets = EDges(0, -imageWith, -imageHeight-spacing/2.0, 0);
+            imageEdgeInsets = _UIEdgeInsets(-labelHeight-spacing/2.0, 0, 0, -labelWidth);
+            labelEdgeInsets = _UIEdgeInsets(0, -imageWith, -imageHeight-spacing/2.0, 0);
         }
             break;
         case UIRelayoutButtonStyleLeft:
         {
-            imageEdgeInsets = EDges(0, -spacing/2.0, 0, spacing/2.0);
-            labelEdgeInsets = EDges(0, spacing/2.0, 0, -spacing/2.0);
+            imageEdgeInsets = _UIEdgeInsets(0, -spacing/2.0, 0, spacing/2.0);
+            labelEdgeInsets = _UIEdgeInsets(0, spacing/2.0, 0, -spacing/2.0);
         }
             break;
         case UIRelayoutButtonStyleBottom:
         {
-            imageEdgeInsets = EDges(0, 0, -labelHeight-spacing/2.0, -labelWidth);
-            labelEdgeInsets = EDges(-imageHeight-spacing/2.0, -imageWith, 0, 0);
+            imageEdgeInsets = _UIEdgeInsets(0, 0, -labelHeight-spacing/2.0, -labelWidth);
+            labelEdgeInsets = _UIEdgeInsets(-imageHeight-spacing/2.0, -imageWith, 0, 0);
         }
             break;
         case UIRelayoutButtonStyleRight:
         {
-            imageEdgeInsets = EDges(0, labelWidth+spacing/2.0, 0, -labelWidth-spacing/2.0);
-            labelEdgeInsets = EDges(0, -imageWith-spacing/2.0, 0, imageWith+spacing/2.0);
+            imageEdgeInsets = _UIEdgeInsets(0, labelWidth+spacing/2.0, 0, -labelWidth-spacing/2.0);
+            labelEdgeInsets = _UIEdgeInsets(0, -imageWith-spacing/2.0, 0, imageWith+spacing/2.0);
         }
             break;
     }

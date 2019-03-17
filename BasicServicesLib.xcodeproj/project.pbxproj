@@ -50,7 +50,6 @@
 		8CF696F42239FAF000DCECC7 /* TimeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF696CB2239FAF000DCECC7 /* TimeUtil.m */; };
 		8CF696F52239FAF000DCECC7 /* DecimalUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF696CC2239FAF000DCECC7 /* DecimalUtil.m */; };
 		8CF696F62239FAF000DCECC7 /* MBProgressHUDUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF696CF2239FAF000DCECC7 /* MBProgressHUDUtil.m */; };
-		8CF696F72239FAF000DCECC7 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF696D22239FAF000DCECC7 /* Constants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,8 +136,6 @@
 		8CF696CE2239FAF000DCECC7 /* TimeUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeUtil.h; sourceTree = "<group>"; };
 		8CF696CF2239FAF000DCECC7 /* MBProgressHUDUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUDUtil.m; sourceTree = "<group>"; };
 		8CF696D02239FAF000DCECC7 /* DecimalUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecimalUtil.h; sourceTree = "<group>"; };
-		8CF696D22239FAF000DCECC7 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		8CF696D32239FAF000DCECC7 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		8CF696D42239FAF000DCECC7 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		FF3C680EF1022A4514245C2B /* Pods_BasicServicesLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BasicServicesLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -321,17 +318,17 @@
 			children = (
 				8CF696862239FAF000DCECC7 /* BasicServicesLib */,
 				8CF6966D2239FAAF00DCECC7 /* AppDelegate.h */,
+				8CF696772239FAAF00DCECC7 /* AppDelegate.m */,
 				8CF6966E2239FAAF00DCECC7 /* TableViewController.h */,
+				8CF696782239FAAF00DCECC7 /* TableViewController.m */,
+				8CF6967A2239FAAF00DCECC7 /* ViewController.h */,
+				8CF696712239FAAF00DCECC7 /* ViewController.m */,
 				8C98B7A5223A310F00D547E5 /* Info.plist */,
 				8CF6966F2239FAAF00DCECC7 /* Assets.xcassets */,
 				8CF696702239FAAF00DCECC7 /* order_list.geojson */,
 				8CF696722239FAAF00DCECC7 /* LaunchScreen.storyboard */,
 				8CF696742239FAAF00DCECC7 /* Main.storyboard */,
-				8CF696712239FAAF00DCECC7 /* ViewController.m */,
 				8CF696762239FAAF00DCECC7 /* main.m */,
-				8CF696772239FAAF00DCECC7 /* AppDelegate.m */,
-				8CF696782239FAAF00DCECC7 /* TableViewController.m */,
-				8CF6967A2239FAAF00DCECC7 /* ViewController.h */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -344,7 +341,7 @@
 				8CF696872239FAF000DCECC7 /* Database */,
 				8CF6968A2239FAF000DCECC7 /* Privates */,
 				8CF6968D2239FAF000DCECC7 /* Categroies */,
-				8CF696B12239FAF000DCECC7 /* UIKit */,
+				8CF696B12239FAF000DCECC7 /* Classes */,
 				8CF696BC2239FAF000DCECC7 /* Networking */,
 				8CF696CA2239FAF000DCECC7 /* Utils */,
 				8CF696D12239FAF000DCECC7 /* AppBase */,
@@ -386,7 +383,7 @@
 			path = Categroies;
 			sourceTree = "<group>";
 		};
-		8CF696B12239FAF000DCECC7 /* UIKit */ = {
+		8CF696B12239FAF000DCECC7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				8C8016CD223A0437001B02DF /* NoDatasourceView */,
@@ -394,7 +391,7 @@
 				8C8016CB223A040C001B02DF /* UIRelayoutButton */,
 				8C8016CA223A03FE001B02DF /* UIPlaceholderTextView */,
 			);
-			path = UIKit;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		8CF696BC2239FAF000DCECC7 /* Networking */ = {
@@ -433,8 +430,6 @@
 			isa = PBXGroup;
 			children = (
 				8CF696D42239FAF000DCECC7 /* Macros.h */,
-				8CF696D32239FAF000DCECC7 /* Constants.h */,
-				8CF696D22239FAF000DCECC7 /* Constants.m */,
 			);
 			path = AppBase;
 			sourceTree = "<group>";
@@ -602,7 +597,6 @@
 				8CF696D72239FAF000DCECC7 /* NSString+Base64.m in Sources */,
 				8CF696E12239FAF000DCECC7 /* UIAlertController+Shortcut.m in Sources */,
 				8CF696E52239FAF000DCECC7 /* UIImage+UIColor.m in Sources */,
-				8CF696F72239FAF000DCECC7 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,7 +740,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NSBW799BSE;
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -764,7 +758,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NSBW799BSE;
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "BasicServicesLib"
-  s.version      = "1.0.4"
+  s.version      = "1.1.0"
   s.summary      = "The basic service component of the project."
 
   # This description is used to generate tags and improve search results.
@@ -154,31 +154,31 @@ Pod::Spec.new do |s|
 
   end
 
-  s.subspec 'UIKit' do |ss|
+  s.subspec 'Classes' do |ss|
+
+		ss.subspec 'PresentedHUDBasicViewController' do |sss|
+      			sss.source_files = 'BasicServicesLib/Classes/PresentedHUDBasicViewController/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Classes/PresentedHUDBasicViewController/*.h'
+		end
 
 		ss.subspec 'UIPlaceholderTextView' do |sss|
-      			sss.source_files = 'BasicServicesLib/UIKit/UIPlaceholderTextView/*.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/UIKit/UIPlaceholderTextView/*.h'
+      			sss.source_files = 'BasicServicesLib/Classes/UIPlaceholderTextView/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Classes/UIPlaceholderTextView/*.h'
 			sss.dependency 'BasicServicesLib/Categroies/NSString'
 			sss.dependency 'BasicServicesLib/AppBase'
 			sss.dependency 'BasicServicesLib/Categroies/UIView'
 		end
 
 		ss.subspec 'UIRelayoutButton' do |sss|
-      			sss.source_files = 'BasicServicesLib/UIKit/UIRelayoutButton/*.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/UIKit/UIRelayoutButton/*.h'
+      			sss.source_files = 'BasicServicesLib/Classes/UIRelayoutButton/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Classes/UIRelayoutButton/*.h'
 			sss.dependency 'BasicServicesLib/AppBase'
 			sss.dependency 'BasicServicesLib/Categroies/UIView'
 		end
 
-		ss.subspec 'PresentedHUDBasicViewController' do |sss|
-      			sss.source_files = 'BasicServicesLib/UIKit/PresentedHUDBasicViewController/*.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/UIKit/PresentedHUDBasicViewController/*.h'
-		end
-
 		ss.subspec 'NoDatasourceView' do |sss|
-      			sss.source_files = 'BasicServicesLib/UIKit/NoDatasourceView/*.{h,m}'
-      			sss.public_header_files = 'BasicServicesLib/UIKit/NoDatasourceView/*.h'
+      			sss.source_files = 'BasicServicesLib/Classes/NoDatasourceView/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Classes/NoDatasourceView/*.h'
 			sss.dependency 'BasicServicesLib/Privates'
 			sss.dependency 'BasicServicesLib/AppBase'
 			sss.dependency 'BasicServicesLib/Categroies/UIView'
@@ -240,7 +240,7 @@ Pod::Spec.new do |s|
   #
 
   # s.framework  = "SomeFramework"
-  s.frameworks = "UIKit", "Foundation"
+  s.frameworks = "Classes", "Foundation"
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"

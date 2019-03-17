@@ -31,7 +31,7 @@
     
     NoDatasourceView *view = [[NoDatasourceView alloc] init];
     view.backgroundColor = UIColor.clearColor;
-    view.frame = REct(0, 0, aView.width, aView.height);
+    view.frame = _CGRect(0, 0, aView.width, aView.height);
     return view;
 }
 
@@ -39,12 +39,12 @@
 {
     [super layoutSubviews];
     
-    CGFloat labelHeight = [_label.text boundingSizeWithFont:_label.font constrainedToSize:SIze(self.width - 30, 0)].height + 1;
+    CGFloat labelHeight = [_label.text boundingSizeWithFont:_label.font constrainedToSize:_CGSize(self.width - 30, 0)].height + 1;
     CGFloat totalHeight = _imageView.height + (_imageView == nil ? 0 : 10) + labelHeight + (_retryButton == nil ? 0 : 10) + _retryButton.height;
     CGFloat startY = self.height/2 - totalHeight/2;
-    _imageView.center = POint(self.width/2, startY + _imageView.height/2);
-    _label.frame = REct(15, (_imageView == nil ? startY : (_imageView.bottom+10)), self.width - 30, labelHeight);
-    _retryButton.frame = REct(self.width/2-40, _label.bottom+10, 80, 35);
+    _imageView.center = _CGPoint(self.width/2, startY + _imageView.height/2);
+    _label.frame = _CGRect(15, (_imageView == nil ? startY : (_imageView.bottom+10)), self.width - 30, labelHeight);
+    _retryButton.frame = _CGRect(self.width/2-40, _label.bottom+10, 80, 35);
 }
 
 - (void)setImage:(UIImage *)image

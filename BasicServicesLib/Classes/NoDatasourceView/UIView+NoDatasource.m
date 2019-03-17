@@ -12,11 +12,6 @@
 #import "NSBundle+BasicServicesLibResource.h"
 #import "Macros.h"
 
-static void exchange_method(Class cls, SEL selector1, SEL selector2)
-{
-    method_exchangeImplementations(class_getInstanceMethod(cls, selector1), class_getInstanceMethod(cls, selector2));
-}
-
 @interface NSBundle (NoDatasource)
 
 + (UIImage *)emptyErrorImage;
@@ -30,7 +25,7 @@ static void exchange_method(Class cls, SEL selector1, SEL selector2)
     static UIImage *image = nil;
     if (image == nil)
     {
-        NSString *imageNamed = NSStringFormat(@"%@", ScreenScale == 3.0 ? @"empty_error@3x":@"empty_error@2x");
+        NSString *imageNamed = NSStringFormat(@"%@", kScreenScale == 3.0 ? @"empty_error@3x":@"empty_error@2x");
         NSString *imagePath = [[self basicServicesLibBundle] pathForResource:imageNamed ofType:@"png"];
         image = [[UIImage imageWithContentsOfFile:imagePath] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
@@ -52,7 +47,7 @@ static char * const kRetryBlockAssociateKey = "\4";
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        exchange_method(self, @selector(setFrame:), @selector(_setFrame:));
+        ExchangeMethod(self, @selector(setFrame:), @selector(_setFrame:));
     });
 }
 
@@ -111,11 +106,11 @@ static char * const kRetryBlockAssociateKey = "\4";
     [self _setFrame:frame];
     
     if ([self isEmptyViewShown]) {
-        [[self emtpyView] setFrame:REct(0, 0, frame.size.width, frame.size.height)];
+        [[self emtpyView] setFrame:_CGRect(0, 0, frame.size.width, frame.size.height)];
     }
     
     if ([self isErrorViewShown]) {
-        [[self errorView] setFrame:REct(0, 0, frame.size.width, frame.size.height)];
+        [[self errorView] setFrame:_CGRect(0, 0, frame.size.width, frame.size.height)];
     }
 }
 
@@ -226,7 +221,7 @@ static char * const kRetryBlockAssociateKey = "\4";
         {
             SEL selector1 = selectors[idx];
             SEL selector2 = NSSelectorFromString([@"_" stringByAppendingString:NSStringFromSelector(selector1)]);
-            exchange_method(self, selector1, selector2);
+            ExchangeMethod(self, selector1, selector2);
         }
     });
 }
@@ -296,7 +291,7 @@ static char * const kRetryBlockAssociateKey = "\4";
         {
             SEL selector1 = selectors[idx];
             SEL selector2 = NSSelectorFromString([@"_" stringByAppendingString:NSStringFromSelector(selector1)]);
-            exchange_method(self, selector1, selector2);
+            ExchangeMethod(self, selector1, selector2);
         }
     });
 }

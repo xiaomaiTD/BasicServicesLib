@@ -12,6 +12,7 @@
 #import "URLSessionTaskResponse.h"
 
 @protocol AFMultipartFormData;
+@class URLSessionTask;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,11 +35,21 @@ typedef NS_ENUM(NSInteger, URLSessionTaskMethod) {
     URLSessionTaskMethodMULTIPART_FORM
 };
 
-typedef void (^URLSessionTaskMultipartFormData) (id<AFMultipartFormData> formData);
-typedef void (^URLSessionTaskProgress) (double progress);
-typedef void (^URLSessionTaskSuccess) (URLSessionTaskResponse *response);
-typedef void (^URLSessionTaskFailure) (NSError *error);
-typedef URLSessionTaskSuccess URLSessionTaskSuccessInterruptor;
+@protocol URLSessionTaskDelegate <NSObject>
+
+@required
+
+- (void)sessionTask:(URLSessionTask *)task requestDidSuccessThrowResponse:(URLSessionTaskResponse *)response;
+- (void)sessionTask:(URLSessionTask *)task requestDidFailedThrowError:(NSError *)error;
+
+@optional
+
+- (void)sessionTask:(URLSessionTask *)task requestFinishedWithProgress:(double)progress;
+- (void)sessionTask:(URLSessionTask *)task requestShouldConstructBody:(id<AFMultipartFormData>)formData;
+
+@end
+
+typedef void (^URLSessionTaskSuccessInterruptor) (URLSessionTaskResponse *response);
 
 @interface URLSessionTask : NSObject
 
@@ -50,7 +61,7 @@ typedef URLSessionTaskSuccess URLSessionTaskSuccessInterruptor;
 /// 本方法用于设置这类通用配置。方法只会生效一次。
 + (void)setHTTPSCerPath:(NSString *)path;
 
-- (instancetype)initWithURL:(URLSessionTaskURL *)URL progress:(nullable URLSessionTaskProgress)progress success:(URLSessionTaskSuccess)success failure:(URLSessionTaskFailure)failure;
+- (instancetype)initWithURL:(URLSessionTaskURL *)URL delegate:(id<URLSessionTaskDelegate> _Nonnull)delegate;
 
 /// 请求链接
 @property(strong, nonatomic, readonly) URLSessionTaskURL *URL;
@@ -62,8 +73,6 @@ typedef URLSessionTaskSuccess URLSessionTaskSuccessInterruptor;
 @property(assign) NSTimeInterval timeout;
 /// 用于模型化请求结果的类
 @property(assign) Class transferCls;
-/// formData
-@property(copy) URLSessionTaskMultipartFormData formData;
 
 /// 当前的网络请求状态
 - (URLSessionTaskState)state;

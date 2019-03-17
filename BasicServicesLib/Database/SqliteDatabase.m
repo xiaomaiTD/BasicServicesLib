@@ -68,7 +68,7 @@ static NSData *aes_iv(void)
 {
     static NSString *named = nil;
     if (named == nil) {
-        named = [app_named() stringByAppendingString:@".sqlite"];
+        named = [AppNamed stringByAppendingString:@".sqlite"];
     }
     return named;
 }
@@ -87,7 +87,7 @@ static NSData *aes_iv(void)
     if (self = [super init])
     {
         _tableSet = [NSMutableSet set];
-        NSString *docsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        NSString *docsPath = DocumentPath;
         NSString *dbPath = [docsPath stringByAppendingPathComponent:[self.class databaseNamed]];
         _queue = [FMDatabaseQueue databaseQueueWithPath:dbPath];
     }
@@ -116,13 +116,14 @@ static NSData *aes_iv(void)
 
 - (void)clear
 {
-    __weak __typeof(self)weakSelf = self;
+    @weakify(self)
     [_queue inDatabase:^(FMDatabase * _Nonnull db) {
         [db beginTransaction];
         BOOL isRollBack = NO;
         @try
         {
-            for (NSString *table in [weakSelf tables])
+            @strongify(self)
+            for (NSString *table in [self tables])
             {
                 NSString *dropTableSql = NSStringFormat(@"DROP TABLE %@", table);
                 [db executeUpdate:dropTableSql];
@@ -152,7 +153,7 @@ static NSData *aes_iv(void)
         return;
     }
     
-    __weak __typeof(self)weakSelf = self;
+    @weakify(self)
     [_queue inDatabase:^(FMDatabase * _Nonnull db) {
         if (![db open]) {
             return;
@@ -164,7 +165,8 @@ static NSData *aes_iv(void)
             [db close];
             return;
         }
-        [weakSelf.tableSet addObject:table];
+        @strongify(self)
+        [self.tableSet addObject:table];
         
         NSString *insertItesSql = NSStringFormat(@"REPLACE INTO '%@' (_primery,_value) VALUES(?,?)", table);
         NSString *_primery = [item safetyValueForKeyAddition:primery];
@@ -252,7 +254,7 @@ static NSData *aes_iv(void)
         return;
     }
     
-    __weak __typeof(self)weakSelf = self;
+    @weakify(self)
     [_queue inDatabase:^(FMDatabase * _Nonnull db) {
         if (![db open]) {
             return;
@@ -264,7 +266,8 @@ static NSData *aes_iv(void)
             [db close];
             return;
         }
-        [weakSelf.tableSet addObject:table];
+        @strongify(self)
+        [self.tableSet addObject:table];
         
         [db beginTransaction];
         BOOL isRollBack = NO;
@@ -429,7 +432,7 @@ static NSData *aes_iv(void)
         return;
     }
     
-    __weak __typeof(self)weakSelf = self;
+    @weakify(self)
     [_queue inDatabase:^(FMDatabase * _Nonnull db) {
         if (![db open]) {
             return;
@@ -441,7 +444,8 @@ static NSData *aes_iv(void)
             [db close];
             return;
         }
-        [weakSelf.tableSet addObject:kUserLoginTableName];
+        @strongify(self)
+        [self.tableSet addObject:kUserLoginTableName];
         
         NSString *updateCurrentSql = NSStringFormat(@"UPDATE %@ SET _isCurrent = 0", kUserLoginTableName);
         [db executeUpdate:updateCurrentSql];
@@ -535,7 +539,7 @@ static NSData *aes_iv(void)
         return;
     }
     
-    __weak __typeof(self)weakSelf = self;
+    @weakify(self)
     [_queue inDatabase:^(FMDatabase *db) {
         if (![db open]) {
             return;
@@ -547,7 +551,8 @@ static NSData *aes_iv(void)
             [db close];
             return;
         }
-        [weakSelf.tableSet addObject:kUserTableName];
+        @strongify(self)
+        [self.tableSet addObject:kUserTableName];
         
         NSString *json = convert_toString(dict);
         NSString *jsonEncrypted = [json encryptedWithAESUsing:kAESKey iv:aes_iv()];

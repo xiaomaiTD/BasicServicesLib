@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "URLSessionTask.h"
 
+@class URLSessionChainTask;
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, URLSessionChainTaskState) {
@@ -18,15 +20,24 @@ typedef NS_ENUM(NSInteger, URLSessionChainTaskState) {
     URLSessionChainTaskStateComplete
 };
 
-/// 注意：准备block的调用线程不是主线程
-typedef void (^URLSessionChainTaskPrepare) (NSInteger index, URLSessionTask *task);
-typedef void (^URLSessionChainTaskProgress) (NSInteger index, double progress);
-typedef void (^URLSessionChainTaskSuccess) (NSInteger index, URLSessionTaskResponse *response);
-typedef void (^URLSessionChainTaskFailure) (NSInteger index, NSError *error);
+@protocol URLSessionChainTaskDelegate <NSObject>
+
+@required
+
+- (void)sessionChainTask:(URLSessionChainTask *)chainTask prepareParamsFor:(URLSessionTask *)task atIndex:(NSInteger)index;
+- (void)sessionChainTask:(URLSessionChainTask *)task requestDidSuccessThrowResponse:(URLSessionTaskResponse *)response atIndex:(NSInteger)index;
+- (void)sessionChainTask:(URLSessionChainTask *)task requestDidFailedThrowError:(NSError *)error atIndex:(NSInteger)index;
+
+@optional
+
+- (void)sessionChainTask:(URLSessionChainTask *)task requestFinishedWithProgress:(double)progress atIndex:(NSInteger)index;
+- (void)sessionChainTask:(URLSessionChainTask *)task requestShouldConstructBody:(id<AFMultipartFormData>)formData atIndex:(NSInteger)index;
+
+@end
 
 @interface URLSessionChainTask : NSObject
 
-- (instancetype)initWithPrepare:(URLSessionChainTaskPrepare _Nonnull)prepare progress:(URLSessionChainTaskProgress _Nullable)progress success:(URLSessionChainTaskSuccess _Nonnull)success failure:(URLSessionChainTaskFailure _Nonnull)failure;
+- (instancetype)initWithDelegate:(id<URLSessionChainTaskDelegate> _Nonnull)delegate;
 
 @property(assign, readonly) URLSessionChainTaskState state;
 

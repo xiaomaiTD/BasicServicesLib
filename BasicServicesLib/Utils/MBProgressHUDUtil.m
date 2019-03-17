@@ -28,7 +28,7 @@
     static UIImage *image = nil;
     if (image == nil)
     {
-        NSString *imageNamed = NSStringFormat(@"%@", ScreenScale == 3.0 ? @"hud_loading_error_blak@3x":@"hud_loading_error_blak@2x");
+        NSString *imageNamed = NSStringFormat(@"%@", kScreenScale == 3.0 ? @"hud_loading_error_blak@3x":@"hud_loading_error_blak@2x");
         NSString *imagePath = [[self basicServicesLibBundle] pathForResource:imageNamed ofType:@"png"];
         image = [[UIImage imageWithContentsOfFile:imagePath] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
@@ -40,7 +40,7 @@
     static UIImage *image = nil;
     if (image == nil)
     {
-        NSString *imageNamed = NSStringFormat(@"%@", ScreenScale == 3.0 ? @"hud_loading_error_white@3x":@"hud_loading_error_white@2x");
+        NSString *imageNamed = NSStringFormat(@"%@", kScreenScale == 3.0 ? @"hud_loading_error_white@3x":@"hud_loading_error_white@2x");
         NSString *imagePath = [[self basicServicesLibBundle] pathForResource:imageNamed ofType:@"png"];
         image = [[UIImage imageWithContentsOfFile:imagePath] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
@@ -52,7 +52,7 @@
     static UIImage *image = nil;
     if (image == nil)
     {
-        NSString *imageNamed = NSStringFormat(@"%@", ScreenScale == 3.0 ? @"hud_loading_success_blak@3x":@"hud_loading_success_blak@2x");
+        NSString *imageNamed = NSStringFormat(@"%@", kScreenScale == 3.0 ? @"hud_loading_success_blak@3x":@"hud_loading_success_blak@2x");
         NSString *imagePath = [[self basicServicesLibBundle] pathForResource:imageNamed ofType:@"png"];
         image = [[UIImage imageWithContentsOfFile:imagePath] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
@@ -64,7 +64,7 @@
     static UIImage *image = nil;
     if (image == nil)
     {
-        NSString *imageNamed = NSStringFormat(@"%@", ScreenScale == 3.0 ? @"hud_loading_white@3x":@"hud_loading_white@2x");
+        NSString *imageNamed = NSStringFormat(@"%@", kScreenScale == 3.0 ? @"hud_loading_white@3x":@"hud_loading_white@2x");
         NSString *imagePath = [[self basicServicesLibBundle] pathForResource:imageNamed ofType:@"png"];
         image = [[UIImage imageWithContentsOfFile:imagePath] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
@@ -152,7 +152,7 @@ static void set_commonHUDConfigration(MBProgressHUD *hud, UIColor *color, bool m
     toast.userInteractionEnabled = NO;
     toast.mode = MBProgressHUDModeText;
     if (position == ToastPositionBottom) {
-        toast.offset = POint(0, MBProgressMaxOffset);
+        toast.offset = _CGPoint(0, MBProgressMaxOffset);
     }
     toast.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     toast.bezelView.color = DefaultContentBackgroundColor;

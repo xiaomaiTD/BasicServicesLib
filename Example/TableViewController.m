@@ -7,87 +7,78 @@
 //
 
 #import "TableViewController.h"
+#import "BasicServicesLib.h"
+#import <AFNetworking/AFNetworking.h>
 
-@interface TableViewController ()
+@interface TableViewController () <URLSessionChainTaskDelegate>
+
+@property(strong, nonatomic) __block URLSessionTaskResponse *response0;
+@property(strong, nonatomic) __block URLSessionTaskResponse *response1;
 
 @end
 
 @implementation TableViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    DEV_LOG(@"\n************************** NETWORKING **************************\n");
+
+    [URLSessionTaskResponse setResponseSuccessCode:200 forKeyAddition:@"code"];
+    [URLSessionTaskResponse setResponseErrorMessageKeyAddition:@"msg"];
+
+    URLSessionTaskURL *url0 = [[URLSessionTaskURL alloc] initWithBaseURL:@"http://sccdev.cd.pangu16.com/passport-server" relativeURL:@"rest/login/loginByName"];
+    URLSessionTaskURL *url1 = [[URLSessionTaskURL alloc] initWithBaseURL:@"http://sccdev.cd.pangu16.com/passport-server" relativeURL:@"rest/auth/getTokenByTicket"];
+
+    URLSessionChainTask *chainTask = [[URLSessionChainTask alloc] initWithDelegate:self];
+    [chainTask addTaskURL:url0];
+    [chainTask addTaskURL:url1];
+    [chainTask send];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [MBProgressHUDUtil LoadingWithText:@"正在加载..." inView:self.view contentBackgroundColor:[UIColor colorWithWhite:0 alpha:0.8] maskBackground:NO userInteraction:YES];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+- (void)dealloc
+{
+    NSLog(@"TableViewController have dealloced.");
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+#pragma mark - <URLSessionChainTaskDelegate>
+
+- (void)sessionChainTask:(URLSessionChainTask *)task requestDidSuccessThrowResponse:(URLSessionTaskResponse *)response atIndex:(NSInteger)index
+{
+    if (index == 0) {
+        self.response0 = response;
+    }
+    else
+    {
+        self.response1 = response;
+        if (self.response1.correct) {
+            [MBProgressHUDUtil SuccessWithText:@"登录成功" inView:self.view];
+        }
+    }
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+- (void)sessionChainTask:(URLSessionChainTask *)chainTask prepareParamsFor:(URLSessionTask *)task atIndex:(NSInteger)index
+{
+    if (index == 0)
+    {
+        URLSessionTaskParams *params = [[URLSessionTaskParams alloc] initWithParams:@{@"name":@"100021", @"password":@"123456", @"systemCode":@"ISCC_MOBILE"}];
+        task.params = params;
+    }
+    else
+    {
+        URLSessionTaskParams *params = [[URLSessionTaskParams alloc] initWithParams:@{@"ticketId":[self.response0.response safetyValueForKeyAddition:@"data.ticket"]}];
+        task.method = URLSessionTaskMethodGET;
+        task.params = params;
+    }
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)sessionChainTask:(URLSessionChainTask *)task requestDidFailedThrowError:(NSError *)error atIndex:(NSInteger)index
+{
+    [MBProgressHUDUtil ErrorWithText:@"登录失败" inView:self.view];
+    [self.view setMessage:@"网络错误，请稍后尝试" type:NoDatasourceTypeError];
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -13,13 +13,18 @@
 #import "Macros.h"
 #import "URLSessionTaskPool.h"
 
-@interface URLSessionTask ()
+@interface URLSessionTask () {
+    struct {
+        unsigned requestDidSuccessThrowResponse: 1;
+        unsigned requestDidFailedThrowError: 1;
+        unsigned requestFinishedWithProgress: 1;
+        unsigned requestShouldConstructBody: 1;
+    } _delegateHas;
+}
 
 @property(strong, nonatomic) NSURLSessionDataTask *task;
 @property(assign, nonatomic) URLSessionTaskState state;
-@property(copy, nonatomic) URLSessionTaskProgress progress;
-@property(copy, nonatomic) URLSessionTaskSuccess success;
-@property(copy, nonatomic) URLSessionTaskFailure failure;
+@property(weak, nonatomic) id<URLSessionTaskDelegate> delegate;
 
 @end
 
@@ -80,17 +85,19 @@ static char * const kHTTPSCerPathAssociateKey = "\1";
     return objc_getAssociatedObject([self class], kHTTPSCerPathAssociateKey);
 }
 
-- (instancetype)initWithURL:(URLSessionTaskURL *)URL progress:(URLSessionTaskProgress)progress success:(URLSessionTaskSuccess)success failure:(URLSessionTaskFailure)failure
+- (instancetype)initWithURL:(URLSessionTaskURL *)URL delegate:(id<URLSessionTaskDelegate>)delegate
 {
+    if (delegate == nil) {
+        return nil;
+    }
+    
     if (self = [super init])
     {
         _URL = URL;
         _state = URLSessionTaskStateWait;
         _method = URLSessionTaskMethodPOST;
         _timeout = 30.f;
-        _progress = progress;
-        _success = success;
-        _failure = failure;
+        [self setDelegate:delegate];
     }
     return self;
 }
@@ -175,27 +182,31 @@ static char * const kHTTPSCerPathAssociateKey = "\1";
     id parameter = _params.params;
     SEL selector = NULL;
     NSString *method = get_methodFrom(_method);
+    @weakify(self)
     void (^uploadProgressBlock) (NSProgress *uploadProgress) = ^ (NSProgress *uploadProgress) {
-        if (self.progress) {
-            self.progress(uploadProgress.fractionCompleted);
+        @strongify(self)
+        if (self->_delegateHas.requestFinishedWithProgress) {
+            [self.delegate sessionTask:self requestFinishedWithProgress:uploadProgress.fractionCompleted];
         }
     };
     void (^successBlock) (NSURLSessionDataTask *task, id responseObject) = ^ (NSURLSessionDataTask *task, id responseObject) {
+        @strongify(self)
         URLSessionTaskResponse *response = [[URLSessionTaskResponse alloc] initWithResponse:responseObject class:self.transferCls];
         URLSessionTaskSuccessInterruptor interruptor = [self getInterruptor];
         if (interruptor) {
             interruptor(response);
         }
         
-        if (self.success) {
-            self.success(response);
+        if (self->_delegateHas.requestDidSuccessThrowResponse) {
+            [self.delegate sessionTask:self requestDidSuccessThrowResponse:response];
         }
         self.state = URLSessionTaskStateCompleted;
         [[URLSessionTaskPool pool] removeTask:self];
     };
     void (^failureBlock) (NSURLSessionDataTask * task, NSError *error) = ^ (NSURLSessionDataTask * task, NSError *error) {
-        if (self.failure) {
-            self.failure(error);
+        @strongify(self)
+        if (self->_delegateHas.requestDidFailedThrowError) {
+            [self.delegate sessionTask:self requestDidFailedThrowError:error];
         }
         
         if (task.error.code != NSURLErrorCancelled) {
@@ -209,8 +220,9 @@ static char * const kHTTPSCerPathAssociateKey = "\1";
     if ([method isEqualToString:@"MULTIPART"])
     {
         void (^ formDataBlock) (id<AFMultipartFormData> formData) = ^ (id<AFMultipartFormData> formData) {
-            if (self.formData) {
-                self.formData(formData);
+            @strongify(self)
+            if (self->_delegateHas.requestShouldConstructBody) {
+                [self.delegate sessionTask:self requestShouldConstructBody:formData];
             }
         };
         
@@ -251,6 +263,18 @@ static char * const kHTTPSCerPathAssociateKey = "\1";
         manager.securityPolicy.allowInvalidCertificates = YES;
         [manager.securityPolicy setValidatesDomainName:NO];
     }
+}
+
+#pragma mark - Setter
+
+- (void)setDelegate:(id<URLSessionTaskDelegate>)newDelegate
+{
+    _delegate = newDelegate;
+    
+    _delegateHas.requestFinishedWithProgress = [newDelegate respondsToSelector:@selector(sessionTask:requestFinishedWithProgress:)];
+    _delegateHas.requestDidSuccessThrowResponse = [newDelegate respondsToSelector:@selector(sessionTask:requestDidSuccessThrowResponse:)];
+    _delegateHas.requestDidFailedThrowError = [newDelegate respondsToSelector:@selector(sessionTask:requestDidFailedThrowError:)];
+    _delegateHas.requestShouldConstructBody = [newDelegate respondsToSelector:@selector(sessionTask:requestShouldConstructBody:)];
 }
 
 @end
