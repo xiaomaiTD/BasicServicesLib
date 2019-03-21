@@ -12,6 +12,8 @@
 
 @interface TableViewController () <URLSessionChainTaskDelegate>
 
+@property(weak, nonatomic) UITableView *tableView;
+
 @property(strong, nonatomic) __block URLSessionTaskResponse *response0;
 @property(strong, nonatomic) __block URLSessionTaskResponse *response1;
 
@@ -22,9 +24,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.tableFooterView = [UIView new];
     
-    DEV_LOG(@"\n************************** NETWORKING **************************\n");
-
     [URLSessionTaskResponse setResponseSuccessCode:200 forKeyAddition:@"code"];
     [URLSessionTaskResponse setResponseErrorMessageKeyAddition:@"msg"];
 
@@ -36,7 +37,13 @@
     [chainTask addTaskURL:url1];
     [chainTask send];
     
-    [MBProgressHUDUtil LoadingWithText:@"正在加载..." inView:self.view contentBackgroundColor:[UIColor colorWithWhite:0 alpha:0.8] maskBackground:NO userInteraction:YES];
+    [MBProgressHUDUtil LoadingWithText:@"正在加载..." inView:self.view contentBackgroundColor:[UIColor colorWithWhite:0 alpha:0.9] maskBackground:NO userInteraction:YES];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.tableView.frame = self.view.bounds;
 }
 
 - (void)dealloc
@@ -78,7 +85,24 @@
 - (void)sessionChainTask:(URLSessionChainTask *)task requestDidFailedThrowError:(NSError *)error atIndex:(NSInteger)index
 {
     [MBProgressHUDUtil ErrorWithText:@"登录失败" inView:self.view];
-    [self.view setMessage:@"网络错误，请稍后尝试" type:NoDatasourceTypeError];
+    [self.tableView setMessage:@"网络错误，请稍后尝试" type:NoDatasourceTypeError];
+}
+
+#pragma mark - Getters
+
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        UITableView *tableView = [[UITableView alloc] init];
+        @weakify(self)
+        [tableView setRetryBlockIfNeeded:^{
+            @strongify(self)
+            [MBProgressHUDUtil LoadingWithText:@"Loading" inView:self.view];
+        }];
+        [self.view addSubview:tableView];
+        _tableView = tableView;
+    }
+    return _tableView;
 }
 
 @end

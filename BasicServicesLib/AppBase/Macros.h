@@ -6,10 +6,8 @@
 //  Copyright © 2019年 Luckeyhill. All rights reserved.
 //
 
-#ifdef __OBJC__
-#import <UIKit/UIKit.h>
-#import <objc/runtime.h>
-#else
+#import "Functions.h"
+
 #ifndef FOUNDATION_EXPORT
 #if defined(__cplusplus)
 #define FOUNDATION_EXPORT extern "C"
@@ -17,12 +15,18 @@
 #define FOUNDATION_EXPORT extern
 #endif
 #endif
-#endif
 
 #ifndef Macros_h
 #define Macros_h
 
-#define NSLog(FORMAT, ...) fprintf(stderr,"%s 第%d行 %s\t%s\n", [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, __FUNCTION__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+/**
+ * Refer: https://onevcat.com/2014/01/black-magic-in-macro/
+ */
+#define NSLog(Format, ...) do {                                                                             \
+                                fprintf(stderr, "<%s : %d> %s\n", [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, __func__);                                       \
+                                (NSLog)((Format), ##__VA_ARGS__);                                           \
+                                fprintf(stderr, "-------\n");                                               \
+                           } while (0)
 
 #ifdef DEBUG
     #define DEV_LOG(...) NSLog(__VA_ARGS__)
@@ -38,31 +42,60 @@
 
 #define NSStringFormat(Format, ...)      [NSString stringWithFormat:Format, ##__VA_ARGS__]
 #define NSStringFromUTF8(Char)           [NSString stringWithUTF8String:Char]
+#define Swap(_A_, _B_)  do { __typeof(_A_) _tmp_ = (_A_); (_A_) = (_B_); (_B_) = _tmp_; } while(0)
+
+/**
+ * 使用这个宏来获取对象时，Named包含了文件格式。
+ */
+#define ImageWithContentsFile(Named)        [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:Named ofType:nil]]
+#define ArrayWithContentsFile(Named)        [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:Named ofType:nil]]
+#define DictionaryWithContentsFile(Named)   [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:Named ofType:nil]]
+
 
 #define ImageNamed(Named)   [UIImage imageNamed:Named]
 #define NotificationCenter  [NSNotificationCenter defaultCenter]
-#define AppDelegate         ([UIApplication sharedApplication].delegate)
+#define UserDefaults        [NSUserDefaults standardUserDefaults]
+#define Application         [UIApplication sharedApplication]
+#define _AppDelegate        Application.delegate
+#define KeyWindow           Application.keyWindow
 #define InfoDictionary      [[NSBundle mainBundle] infoDictionary]
-#define AppNamed            [InfoDictionary objectForKey:@"CFBundleDisplayName"]
+#define AppNamed            [InfoDictionary objectForKey:@"CFBundleName"]
+#define AppIdentifier       [InfoDictionary objectForKey:@"CFBundleIdentifier"]
 #define AppVersion          [InfoDictionary objectForKey:@"CFBundleShortVersionString"]
 #define AppBuild            [InfoDictionary objectForKey:@"CFBundleVersion"]
-#define DocumentPath        (NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0])
-#define TempPath            NSTemporaryDirectory()
-#define CachePath           (NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0])
-#define CurrentLanguage     ([NSLocale preferredLanguages][0])
 
-#define kNavigationBarHeight        (44.0)
+#define DocumentPath                (NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0])
+#define TempPath                    (NSTemporaryDirectory())
+#define CachePath                   (NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0])
+#define CurrentLanguage             ([NSLocale preferredLanguages][0])
 #define kToastDefaultDismissDelay   (2.3)
 #define kResultHUDDismissDelay      (1.45)
-#define kScreenBounds        ([UIScreen mainScreen].bounds)
-#define kScreenScale         ([UIScreen mainScreen].scale)
-#define kAppStatusBarHeight  (CGRectGetHeight([UIApplication sharedApplication].statusBarFrame))
-#define kScreenWidth         CGRectGetWidth(ScreenBounds)
-#define kScreenHeight        CGRectGetHeight(ScreenBounds)
-#define kSysVersion          ([[UIDevice currentDevice] systemVersion])
+#define kNavigationBarHeight        (44.0)
+#define kScreenBounds               ([UIScreen mainScreen].bounds)
+#define kScreenScale                ([UIScreen mainScreen].scale)
+#define kAppStatusBarHeight         (CGRectGetHeight(Application.statusBarFrame))
+#define kScreenWidth                (CGRectGetWidth(ScreenBounds))
+#define kScreenHeight               (CGRectGetHeight(ScreenBounds))
+#define kSysVersion                 ([[UIDevice currentDevice] systemVersion])
 
-#pragma mark -  强弱引用
+#define iOS9OrLater         (([kSysVersion floatValue] >= 9.0) ? (YES):(NO))
+#define iOS10OrLater        (([kSysVersion floatValue] >= 10.0) ? (YES):(NO))
+#define iOS11OrLater        (([kSysVersion floatValue] >= 11.0) ? (YES):(NO))
 
+/**
+ * 检测是否是竖屏状态
+ */
+#define kIsPortrait (Application.statusBarOrientation == UIInterfaceOrientationPortrait || Application.statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
+
+/**
+ * 刘海屏幕的底部安全区高度，适配了横屏和竖屏两种。
+ */
+#define kiPhoneXScreenBottomSafeAreaHeight  (kIsPortrait ? 34.0:21.0)
+
+
+/**
+ * Refer: https://www.jianshu.com/p/9e18f28bf28d
+ */
 #ifndef weakify
     #if DEBUG
         #if __has_feature(objc_arc)
@@ -94,87 +127,5 @@
         #endif
     #endif
 #endif
-
-#pragma mark - 内敛函数
-
-static inline CGRect _CGRect(double x, double y, double w, double h)
-{
-    return CGRectMake(x, y, w, h);
-}
-
-static inline CGPoint _CGPoint(double x, double y)
-{
-    return CGPointMake(x, y);
-}
-
-static inline CGSize _CGSize(double w, double h)
-{
-    return CGSizeMake(w, h);
-}
-
-static inline UIEdgeInsets _UIEdgeInsets(double t, double l, double b, double r)
-{
-    return UIEdgeInsetsMake(t, l, b, r);
-}
-
-static inline double DegreesToRadian(double degrees)
-{
-    return M_PI*(degrees)/180.0;
-}
-
-static inline double RadianToDegrees(double radian)
-{
-    return (radian*180.0)/(M_PI);
-}
-
-static inline BOOL StringIsEmpty(NSString *string)
-{
-    return [string isKindOfClass:[NSNull class]] || string == nil || [string length] < 1 ? YES : NO;
-}
-
-static inline UIColor *ColorRGBA(double red, double green, double blue, double alpha)
-{
-    return [UIColor colorWithRed:(red/255.0) green:(green/255.0) blue:(blue/255.0) alpha:alpha];
-}
-
-static inline UIColor *ColorRGB(double red, double green, double blue)
-{
-    return ColorRGBA(red, green, blue, 1.0);
-}
-
-static inline UIColor *ColorRandom(void)
-{
-    return ColorRGB(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256));
-}
-
-static inline void ExchangeMethod(Class cls, SEL selector1, SEL selector2)
-{
-    method_exchangeImplementations(class_getInstanceMethod(cls, selector1), class_getInstanceMethod(cls, selector2));
-}
-
-
-static inline void ViewShadow(UIView *target, UIColor *shadowColor, double shadowOpacity, double shadowRadius, CGSize shadowOffset)
-{
-    [target.layer setShadowColor:[shadowColor CGColor]];
-    [target.layer setShadowOpacity:shadowOpacity];
-    [target.layer setShadowRadius:shadowRadius];
-    [target.layer setShadowOffset:shadowOffset];
-}
-
-static inline void ViewBorderRadius(UIView *target, double cornerRadius, double borderWidth, UIColor *borderColor)
-{
-    [target.layer setCornerRadius:cornerRadius];
-    [target.layer setBorderWidth:borderWidth];
-    [target.layer setBorderColor:[borderColor CGColor]];
-}
-
-static inline void DispatchAfter(double delay, dispatch_block_t block)
-{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (block) {
-            block();
-        }
-    });
-}
 
 #endif /* Macros_h */

@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "BasicServicesLib"
-  s.version      = "1.1.0"
+  s.version      = "1.1.2"
   s.summary      = "The basic service component of the project."
 
   # This description is used to generate tags and improve search results.
@@ -193,6 +193,7 @@ Pod::Spec.new do |s|
 	ss.dependency 'BasicServicesLib/AppBase'
 	ss.dependency 'BasicServicesLib/Privates'
   	ss.dependency "MBProgressHUD", "~> 1.1.0"
+  	ss.dependency "BasicServicesLib/Categroies/UIView"
   end
 
   s.subspec 'Networking' do |ss|

@@ -43,13 +43,13 @@ static char * const kNoDatasourceEmptyViewShownAssociateKey = "\2";
 static char * const kNoDatasourceErrorViewShownAssociateKey = "\3";
 static char * const kRetryBlockAssociateKey = "\4";
 
-+ (void)load
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
+- (void)animatingRotateWithInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        ExchangeMethod(self, @selector(setFrame:), @selector(_setFrame:));
-    });
+    [self setFrameNoDataSourceViewIfNeeded];
 }
+#pragma clang diagnostic pop
 
 - (NoDatasourceView *)emtpyView
 {
@@ -88,7 +88,7 @@ static char * const kRetryBlockAssociateKey = "\4";
 
 - (void)setIsEmptyViewShown:(BOOL)yesOrNo
 {
-    objc_setAssociatedObject(self, kNoDatasourceEmptyViewShownAssociateKey, @(yesOrNo), OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, kNoDatasourceEmptyViewShownAssociateKey, @(yesOrNo), OBJC_ASSOCIATION_COPY);
 }
 
 - (BOOL)isErrorViewShown
@@ -98,20 +98,7 @@ static char * const kRetryBlockAssociateKey = "\4";
 
 - (void)setIsErrorViewShown:(BOOL)yesOrNo
 {
-    objc_setAssociatedObject(self, kNoDatasourceErrorViewShownAssociateKey, @(yesOrNo), OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-- (void)_setFrame:(CGRect)frame
-{
-    [self _setFrame:frame];
-    
-    if ([self isEmptyViewShown]) {
-        [[self emtpyView] setFrame:_CGRect(0, 0, frame.size.width, frame.size.height)];
-    }
-    
-    if ([self isErrorViewShown]) {
-        [[self errorView] setFrame:_CGRect(0, 0, frame.size.width, frame.size.height)];
-    }
+    objc_setAssociatedObject(self, kNoDatasourceErrorViewShownAssociateKey, @(yesOrNo), OBJC_ASSOCIATION_COPY);
 }
 
 - (NSInteger)_datasourceCountIfListView
@@ -136,6 +123,7 @@ static char * const kRetryBlockAssociateKey = "\4";
     return count;
 }
 
+/*
 - (void)_setShowEmptyIfListView
 {
     if ([self _datasourceCountIfListView] == 0) {
@@ -146,6 +134,7 @@ static char * const kRetryBlockAssociateKey = "\4";
         [self setHiddenNoDatasource];
     }
 }
+*/
 
 - (void)setMessage:(NSString *)message type:(NoDatasourceType)type
 {
@@ -159,8 +148,9 @@ static char * const kRetryBlockAssociateKey = "\4";
             [[self errorView] setHidden:YES];
             [self setIsErrorViewShown:NO];
         }
+        [self setFrameNoDataSourceViewIfNeeded];
     }
-    else
+    else if (type == NoDatasourceTypeError)
     {
         [self setIsErrorViewShown:YES];
         [[self errorView] setMessage:message];
@@ -170,6 +160,7 @@ static char * const kRetryBlockAssociateKey = "\4";
             [[self emtpyView] setHidden:YES];
             [self setIsEmptyViewShown:NO];
         }
+        [self setFrameNoDataSourceViewIfNeeded];
     }
 }
 
@@ -188,6 +179,41 @@ static char * const kRetryBlockAssociateKey = "\4";
     }
 }
 
+- (void)setFrameNoDataSourceViewIfNeeded
+{
+#define IS_SCROLLVIEW   [self isKindOfClass:[UIScrollView class]]
+    
+    if ([self isEmptyViewShown]) {
+        if (IS_SCROLLVIEW)
+        {
+            UIScrollView *scrollView = (UIScrollView *)self;
+            CGFloat topInset = scrollView.contentInset.top;
+            CGFloat boundsY = ABS(scrollView.bounds.origin.y);
+            CGFloat heightOffset = topInset+boundsY;
+            [[self errorView] setFrame:_CGRect(0, -heightOffset, self.bounds.size.width, self.bounds.size.height)];
+        }
+        else
+        {
+            [[self emtpyView] setFrame:self.bounds];
+        }
+    }
+    
+    if ([self isErrorViewShown]) {
+        if (IS_SCROLLVIEW)
+        {
+            UIScrollView *scrollView = (UIScrollView *)self;
+            CGFloat topInset = scrollView.contentInset.top;
+            CGFloat boundsY = ABS(scrollView.bounds.origin.y);
+            CGFloat heightOffset = topInset+boundsY;
+            [[self errorView] setFrame:_CGRect(0, -heightOffset, self.bounds.size.width, self.bounds.size.height)];
+        }
+        else
+        {
+            [[self errorView] setFrame:self.bounds];
+        }
+    }
+}
+
 - (void)setRetryBlockIfNeeded:(dispatch_block_t)block
 {
     objc_setAssociatedObject(self, kRetryBlockAssociateKey, block, OBJC_ASSOCIATION_COPY);
@@ -200,7 +226,40 @@ static char * const kRetryBlockAssociateKey = "\4";
 
 @end
 
+@interface UIViewController (NoDatasource)
 
+@end
+
+@implementation UIViewController (NoDatasource)
+
++ (void)load
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        ExchangeMethod(self, @selector(viewWillTransitionToSize:withTransitionCoordinator:), @selector(_viewWillTransitionToSize:withTransitionCoordinator:));
+    });
+}
+
+- (void)_viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [self _viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    if ([self.view respondsToSelector:@selector(willRotateFromInterfaceOrientation:)]) {
+        [self.view willRotateFromInterfaceOrientation:[UIApplication sharedApplication].statusBarOrientation];
+    }
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        if ([self.view respondsToSelector:@selector(animatingRotateWithInterfaceOrientation:)]) {
+            [self.view animatingRotateWithInterfaceOrientation:[UIApplication sharedApplication].statusBarOrientation];
+        }
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        if ([self.view respondsToSelector:@selector(didRotateToInterfaceOrientation:)]) {
+            [self.view didRotateToInterfaceOrientation:[UIApplication sharedApplication].statusBarOrientation];
+        }
+    }];
+}
+
+@end
+
+/*
 @implementation UITableView (NoDatasource)
 
 + (void)load
@@ -339,3 +398,4 @@ static char * const kRetryBlockAssociateKey = "\4";
 }
 
 @end
+*/

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		28873D0BE0F7B24DE78F52A1 /* Pods_BasicServicesLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF3C680EF1022A4514245C2B /* Pods_BasicServicesLib.framework */; };
+		8C96226F223F9669007AD201 /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C96226E223F9668007AD201 /* Functions.m */; };
 		8CF6967B2239FAAF00DCECC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CF6966F2239FAAF00DCECC7 /* Assets.xcassets */; };
 		8CF6967C2239FAAF00DCECC7 /* order_list.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 8CF696702239FAAF00DCECC7 /* order_list.geojson */; };
 		8CF6967D2239FAAF00DCECC7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF696712239FAAF00DCECC7 /* ViewController.m */; };
@@ -55,6 +56,8 @@
 /* Begin PBXFileReference section */
 		2BB3F58A39AD152E44C35F38 /* Pods-BasicServicesLib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicServicesLib.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BasicServicesLib/Pods-BasicServicesLib.debug.xcconfig"; sourceTree = "<group>"; };
 		343C6EBD74034ACDF9DAE2AF /* Pods-BasicServicesLib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicServicesLib.release.xcconfig"; path = "Pods/Target Support Files/Pods-BasicServicesLib/Pods-BasicServicesLib.release.xcconfig"; sourceTree = "<group>"; };
+		8C96226D223F9668007AD201 /* Functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
+		8C96226E223F9668007AD201 /* Functions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Functions.m; sourceTree = "<group>"; };
 		8C98B7A5223A310F00D547E5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CD3BE252227787600006DEA /* BasicServicesLib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicServicesLib.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CF6966D2239FAAF00DCECC7 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -338,13 +341,13 @@
 			children = (
 				8CF696C92239FAF000DCECC7 /* BasicServicesLib.h */,
 				8CF696B02239FAF000DCECC7 /* BasicServicesLib.bundle */,
-				8CF696872239FAF000DCECC7 /* Database */,
-				8CF6968A2239FAF000DCECC7 /* Privates */,
-				8CF6968D2239FAF000DCECC7 /* Categroies */,
-				8CF696B12239FAF000DCECC7 /* Classes */,
-				8CF696BC2239FAF000DCECC7 /* Networking */,
-				8CF696CA2239FAF000DCECC7 /* Utils */,
 				8CF696D12239FAF000DCECC7 /* AppBase */,
+				8CF696872239FAF000DCECC7 /* Database */,
+				8CF696BC2239FAF000DCECC7 /* Networking */,
+				8CF696B12239FAF000DCECC7 /* Classes */,
+				8CF6968D2239FAF000DCECC7 /* Categroies */,
+				8CF696CA2239FAF000DCECC7 /* Utils */,
+				8CF6968A2239FAF000DCECC7 /* Privates */,
 			);
 			path = BasicServicesLib;
 			sourceTree = SOURCE_ROOT;
@@ -430,6 +433,8 @@
 			isa = PBXGroup;
 			children = (
 				8CF696D42239FAF000DCECC7 /* Macros.h */,
+				8C96226D223F9668007AD201 /* Functions.h */,
+				8C96226E223F9668007AD201 /* Functions.m */,
 			);
 			path = AppBase;
 			sourceTree = "<group>";
@@ -595,6 +600,7 @@
 				8CF696EC2239FAF000DCECC7 /* PresentedHUDBasicViewController.m in Sources */,
 				8CF696E42239FAF000DCECC7 /* NSData+Base64.m in Sources */,
 				8CF696D72239FAF000DCECC7 /* NSString+Base64.m in Sources */,
+				8C96226F223F9669007AD201 /* Functions.m in Sources */,
 				8CF696E12239FAF000DCECC7 /* UIAlertController+Shortcut.m in Sources */,
 				8CF696E52239FAF000DCECC7 /* UIImage+UIColor.m in Sources */,
 			);

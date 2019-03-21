@@ -10,6 +10,7 @@
 #import "Macros.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "NSBundle+BasicServicesLibResource.h"
+//#import "UIView+UIViewController.h"
 
 @interface NSBundle (MBProgressHUD)
 
@@ -74,7 +75,7 @@
 @end
 
 
-#define DefaultContentBackgroundColor   [UIColor colorWithWhite:0 alpha:0.8]
+#define DefaultContentBackgroundColor   [UIColor colorWithWhite:0 alpha:0.9]
 #define DefaultLableFont                [UIFont systemFontOfSize:14]
 
 @implementation MBProgressHUDUtil
@@ -82,9 +83,6 @@
 static UIView *get_superView(UIView *aView)
 {
     UIView *superView = aView;
-    if (superView == nil) {
-        superView = AppDelegate.window;
-    }
     return superView;
 }
 
@@ -119,10 +117,14 @@ static void set_commonHUDConfigration(MBProgressHUD *hud, UIColor *color, bool m
     
     if (isColorNotNil) {
         hud.bezelView.color = color;
-    }else {
+    }
+    else
+    {
         if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0) {
-            hud.bezelView.color = [UIColor colorWithWhite:0.8f alpha:0.6f];
-        } else {
+            hud.bezelView.color = [UIColor colorWithWhite:0.9f alpha:0.6f];
+        }
+        else
+        {
             hud.bezelView.color = [UIColor colorWithWhite:0.95f alpha:0.6f];
         }
     }

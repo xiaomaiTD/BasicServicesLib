@@ -68,7 +68,7 @@ static NSData *aes_iv(void)
 {
     static NSString *named = nil;
     if (named == nil) {
-        named = [AppNamed stringByAppendingString:@".sqlite"];
+        named = [AppIdentifier stringByAppendingString:@".sqlite"];
     }
     return named;
 }

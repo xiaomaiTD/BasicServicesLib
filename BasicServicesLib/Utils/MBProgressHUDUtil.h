@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ * 由于MBProgressHUD在添加到UIScrollView后，会导致bezelView并不是在最中间，所以尽量不将其添加到滚动式图上。
+ */
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, ToastPosition) {

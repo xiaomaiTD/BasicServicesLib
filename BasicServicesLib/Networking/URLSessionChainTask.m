@@ -85,6 +85,11 @@
             for (int idx = 0; idx < self.chainTaskURLs.count; ++idx)
             {
                 self.index = idx;
+                
+                if (!self.canContinue) {
+                    break;
+                }
+                
                 if (self.state == URLSessionChainTaskStateCancel) {
                     if (self->_delegateHas.requestDidFailedThrowError) {
                         dispatch_async(dispatch_get_main_queue(), ^{
@@ -96,10 +101,6 @@
                 }
                 
                 URLSessionTask *task = [[URLSessionTask alloc] initWithURL:self.chainTaskURLs[idx] delegate:self];
-                
-                if (!self.canContinue) {
-                    break;
-                }
                 
                 if (self->_delegateHas.prepareParams) {
                     [self.delegate sessionChainTask:self prepareParamsFor:task atIndex:idx];
@@ -169,7 +170,6 @@
     if (_delegateHas.requestDidSuccessThrowResponse) {
         [self.delegate sessionChainTask:self requestDidSuccessThrowResponse:response atIndex:self.index];
     }
-    
     
     if (!response.correct && self.index < self.chainTaskURLs.count-1)
     {

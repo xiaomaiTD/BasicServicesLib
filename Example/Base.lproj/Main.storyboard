@@ -29,7 +29,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="zre-Vt-qeB" kind="show" id="ITh-M2-J89"/>
+                                    <segue destination="wtD-rq-cD6" kind="show" id="uUi-P2-qzz"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9Jr-Hd-gpi" customClass="UIPlaceholderTextView">
@@ -53,42 +53,35 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="xYL-dr-k4P"/>
+                    <navigationItem key="navigationItem" id="xYL-dr-k4P">
+                        <barButtonItem key="rightBarButtonItem" title="Show Date Picker" id="NXS-He-jeZ">
+                            <connections>
+                                <action selector="showDatePicker:" destination="BYZ-38-t0r" id="dqy-z2-v1x"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="textView" destination="9Jr-Hd-gpi" id="oP5-Ct-IcA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="124.58770614692655"/>
+            <point key="canvasLocation" x="1271" y="151"/>
         </scene>
         <!--Table View Controller-->
-        <scene sceneID="DaR-DK-smH">
+        <scene sceneID="O7l-fo-LOy">
             <objects>
-                <tableViewController id="zre-Vt-qeB" customClass="TableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jpZ-vb-JFm">
+                <viewController id="wtD-rq-cD6" customClass="TableViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fLh-Kx-XPS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="S0E-P5-WVR">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S0E-P5-WVR" id="opa-cv-lU6">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="zre-Vt-qeB" id="dhq-H5-XOg"/>
-                            <outlet property="delegate" destination="zre-Vt-qeB" id="Tcb-zg-1Id"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BXM-Gr-ofI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <viewLayoutGuide key="safeArea" id="hCg-3M-1Qt"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="byT-Fc-hpc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1956" y="140.77961019490255"/>
+            <point key="canvasLocation" x="2175" y="151"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Nfp-x8-i8x">

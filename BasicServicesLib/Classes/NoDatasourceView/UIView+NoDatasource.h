@@ -17,6 +17,14 @@ typedef NS_ENUM(NSInteger, NoDatasourceType) {
     NoDatasourceTypeError
 };
 
+@interface UIView ()
+
+- (void)willRotateFromInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation;
+- (void)animatingRotateWithInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation NS_REQUIRES_SUPER;
+- (void)didRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation;
+
+@end
+
 @interface UIView (NoDatasource)
 
 - (void)setMessage:(NSString *)message type:(NoDatasourceType)type;
