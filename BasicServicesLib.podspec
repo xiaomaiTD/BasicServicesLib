@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "BasicServicesLib"
-  s.version      = "1.1.2"
+  s.version      = "1.1.5"
   s.summary      = "The basic service component of the project."
 
   # This description is used to generate tags and improve search results.
@@ -100,6 +100,16 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Categroies' do |ss|
+
+		ss.subspec 'UIKit+Foundation+Blocked' do |sss|
+      			sss.source_files = 'BasicServicesLib/Categroies/UIKit+Foundation+Blocked/*.{h,m,md}'
+      			sss.public_header_files = 'BasicServicesLib/Categroies/UIKit+Foundation+Blocked/*.h'
+		end
+
+		ss.subspec 'NSDate' do |sss|
+      			sss.source_files = 'BasicServicesLib/Categroies/NSDate/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Categroies/NSDate/*.h'
+		end
 
 		ss.subspec 'NSData' do |sss|
       			sss.source_files = 'BasicServicesLib/Categroies/NSData/*.{h,m}'

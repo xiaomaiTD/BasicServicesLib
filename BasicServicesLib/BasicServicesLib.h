@@ -17,6 +17,10 @@
 
 #import "URLSessionChainTask.h"
 
+#import "NSObject+KVOBlocked.h"
+#import "UIControl+SelectorBlocked.h"
+#import "NSNotificationCenter+ObserverBlocked.h"
+#import "NSDate+NSCalendar.h"
 #import "NSDictionary+KeyValueAddition.h"
 #import "NSData+Base64.h"
 #import "NSData+Encrypt.h"
@@ -30,6 +34,8 @@
 #import "UIView+UINib.h"
 #import "UIView+CGRect.h"
 #import "UIImage+UIColor.h"
+#import "UIImage+Snapshot.h"
+#import "UIImage+CornerRadius.h"
 #import "UIAlertController+Shortcut.h"
 #import "UITextField+Placeholder.h"
 #import "UIWindow+TransitionRootVc.h"

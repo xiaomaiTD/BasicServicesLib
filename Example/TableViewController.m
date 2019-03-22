@@ -38,6 +38,21 @@
     [chainTask send];
     
     [MBProgressHUDUtil LoadingWithText:@"正在加载..." inView:self.view contentBackgroundColor:[UIColor colorWithWhite:0 alpha:0.9] maskBackground:NO userInteraction:YES];
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:_CGRect(100, 100, 100, 40)];
+    button.backgroundColor = [UIColor redColor];
+    ViewShadow(button, [UIColor blueColor], 0.3, 3, CGSizeZero);
+    [self.view addSubview:button];
+    @weakify(self)
+    [button addBlockForControlEvents:UIControlEventTouchUpInside responder:^(UIControl *sender) {
+        @strongify(self)
+        NSLog(@"self = %@, sender = %@", self, sender);
+    }];
+    
+    [NotificationCenter addBlockWithName:@"name" object:nil identifier:@"identifier" responder:^(NSNotification *sender) {
+        @strongify(self)
+        NSLog(@"self = %@, sender.userInfo = %@", self, sender.userInfo);
+    }];
 }
 
 - (void)viewDidLayoutSubviews
@@ -48,6 +63,7 @@
 
 - (void)dealloc
 {
+    [NotificationCenter removeBlockWithName:@"name" identifier:@"identifier"];
     NSLog(@"TableViewController have dealloced.");
 }
 

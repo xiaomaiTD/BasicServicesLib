@@ -94,7 +94,7 @@ extern void ExchangeMethod(Class cls, SEL selector1, SEL selector2);
 extern BOOL IsiPhoneXScreen(void);
 
 /**
- * 给视图target添加阴影。
+ * 给视图target添加阴影。 shadowRadius在CA框架中默认为3。
  */
 extern void ViewShadow(UIView *target, UIColor *shadowColor, double shadowOpacity, double shadowRadius, CGSize shadowOffset);
 

@@ -14,6 +14,7 @@
 
 @property(weak, nonatomic) UIView *redView;
 @property(weak, nonatomic) IBOutlet UIPlaceholderTextView *textView;
+@property (weak, nonatomic) IBOutlet UIRelayoutButton *showTableViewControllerButton;
 
 @end
 
@@ -59,6 +60,7 @@
     NSDictionary *orderEntity = ((NSArray *)orderList[@"data"]).firstObject;
     orderEntity = [orderEntity safetySetValue:@YES forKeyAddition:@"checked"];
     DispatchAfter(2, ^{
+        NotificationCenterPost(@"name", nil, @{@"haha":@"asdf"});
         [[SqliteDatabase database] updateItems:@[orderEntity] primeryPath:@"id" inTable:@"order_list"];
         DEV_LOG(@"%@", [[SqliteDatabase database] getItemsInTable:@"order_list" size:10 page:0]);
         [[SqliteDatabase database] clear];
@@ -82,6 +84,12 @@
     NSString *amount = [DecimalUtil amountFromDecimal:decimal scale:4 type:AmountTypeNone usingUnit:NO];
     DEV_LOG(@"%@", amount);
     DEV_LOG(@"%@", [DecimalUtil percentFromDecimal:[NSDecimalNumber decimalNumberWithString:@"0.13"]]);
+    
+    @weakify(self)
+    [self.showTableViewControllerButton addBlockForControlEvents:UIControlEventTouchUpInside responder:^(UIControl *sender) {
+        @strongify(self)
+        [self performSegueWithIdentifier:@"ShowTableViewController" sender:nil];
+    }];
 }
 
 - (IBAction)showDatePicker:(id)sender

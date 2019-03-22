@@ -24,6 +24,7 @@
     if ([cString length] < 6) {
         return [UIColor clearColor];
     }
+    
     // strip 0X if it appears
     if ([cString hasPrefix:@"0X"]) {
         cString = [cString substringFromIndex:2];

@@ -28,9 +28,6 @@
                                 <state key="normal" title="Button" image="icon-pg-shaixuanjihu">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <segue destination="wtD-rq-cD6" kind="show" id="uUi-P2-qzz"/>
-                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9Jr-Hd-gpi" customClass="UIPlaceholderTextView">
                                 <rect key="frame" x="20" y="383.5" width="335" height="128"/>
@@ -61,7 +58,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="showTableViewControllerButton" destination="36a-gU-6JT" id="Ofe-qK-b7N"/>
                         <outlet property="textView" destination="9Jr-Hd-gpi" id="oP5-Ct-IcA"/>
+                        <segue destination="wtD-rq-cD6" kind="show" identifier="ShowTableViewController" id="eo5-zp-cR0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
