@@ -74,18 +74,18 @@ iOS项目基础组件。包含了很多便捷方法和UI组件的扩展；包括
 
 - 关联性的网络请求
 
-  ~~例如登录时，我们的逻辑是先用账号密码获取token值，再用token值获取ticket值，ticket和token都将作为后续网络请求的参数存入到header中。通常这种网络请求都会存在block嵌套的操作。由于block嵌套存在各种弊端，这里我将AFN利用型号量实现了异步任务的同步操作。使用如下:  
+  ~~例如登录时，我们的逻辑是先用账号密码获取token值，再用token值获取ticket值，ticket和token都将作为后续网络请求的参数存入到header中。通常这种网络请求都会存在block嵌套的操作。由于block嵌套存在各种弊端，这里我将AFN利用型号量实现了异步任务的同步操作。使用如下:~~  
 
   ~~```objective-c
-  ~~[URLSessionTaskResponse setResponseSuccessCode:200 forKeyAddition:@"code"];
-  ~~[URLSessionTaskResponse setResponseErrorMessageKeyAddition:@"msg"];    
+  ~~[URLSessionTaskResponse setResponseSuccessCode:200 forKeyAddition:@"code"];~~
+  ~~[URLSessionTaskResponse setResponseErrorMessageKeyAddition:@"msg"];~~    
   
-  ~~URLSessionTaskURL *url0 = [[URLSessionTaskURL alloc] initWithBaseURL:@"url0" relativeURL:@"rest/login/loginByName"];
-  ~~URLSessionTaskURL *url1 = [[URLSessionTaskURL alloc] initWithBaseURL:@"url1" relativeURL:@"rest/auth/getTokenByTicket"];
+  ~~URLSessionTaskURL *url0 = [[URLSessionTaskURL alloc] initWithBaseURL:@"url0" relativeURL:@"rest/login/loginByName"];~~
+  ~~URLSessionTaskURL *url1 = [[URLSessionTaskURL alloc] initWithBaseURL:@"url1" relativeURL:@"rest/auth/getTokenByTicket"];~~
       
-  ~~__block URLSessionTaskResponse *response0 = nil;
+  ~~__block URLSessionTaskResponse *response0 = nil;~~
   
-  ~~__block URLSessionTaskResponse *response1 = nil;
+  ~~__block URLSessionTaskResponse *response1 = nil;~~
   
   ~~URLSessionChainTask *chainTask = [[URLSessionChainTask alloc] initWithPrepare:^(NSInteger index, URLSessionTask *task) {
     ~~if (index == 0)
