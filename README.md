@@ -76,7 +76,7 @@ iOS项目基础组件。包含了很多便捷方法和UI组件的扩展；包括
 
   ~~例如登录时，我们的逻辑是先用账号密码获取token值，再用token值获取ticket值，ticket和token都将作为后续网络请求的参数存入到header中。通常这种网络请求都会存在block嵌套的操作。由于block嵌套存在各种弊端，这里我将AFN利用型号量实现了异步任务的同步操作。使用如下:~~  
 
-  ~~```objective-c
+  ```objective-c
   ~~[URLSessionTaskResponse setResponseSuccessCode:200 forKeyAddition:@"code"];~~
   ~~[URLSessionTaskResponse setResponseErrorMessageKeyAddition:@"msg"];~~    
   
@@ -123,9 +123,9 @@ iOS项目基础组件。包含了很多便捷方法和UI组件的扩展；包括
   ~~[chainTask send];
   
   ~~[MBProgressHUDUtil LoadingWithText:@"正在加载..." inView:self.view contentBackgroundColor:[UIColor colorWithWhite:0 alpha:0.8] maskBackground:NO userInteraction:YES];
-  ~~```
+  ```
 
-  ~~这里需要注意的是prepare代码块是在异步线程回调。
+  ~~这里需要注意的是prepare代码块是在异步线程回调。~~
 
   修改：由于Block的原因会导致网络请求发送后，视图或控制器无法正常释放，必须等请求回调后才能释放。目前将其修改为代理模式。示例如下：
 
