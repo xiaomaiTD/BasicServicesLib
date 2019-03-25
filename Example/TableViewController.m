@@ -12,7 +12,7 @@
 
 @interface TableViewController () <URLSessionChainTaskDelegate>
 
-@property(weak, nonatomic) UITableView *tableView;
+@property(weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property(strong, nonatomic) __block URLSessionTaskResponse *response0;
 @property(strong, nonatomic) __block URLSessionTaskResponse *response1;
@@ -53,12 +53,16 @@
         @strongify(self)
         NSLog(@"self = %@, sender.userInfo = %@", self, sender.userInfo);
     }];
-}
-
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    self.tableView.frame = self.view.bounds;
+    
+    [_tableView setRetryBlockIfNeeded:^{
+        @strongify(self)
+        
+        UIAlertController *controller = [UIAlertController alertWithTitle:@"Alert" message:@"This is a test alert message!" actionHandler:^(UIAlertActionStyle style, NSInteger index) {
+            
+        } destructiveStyleButtonTitle:@"Destructive" cancelStyleButtonTitle:@"Cancel" defaultStyleButtonTitles:@"Default", nil];
+        [self.navigationController presentViewController:controller animated:YES completion:nil];
+        
+    }];
 }
 
 - (void)dealloc
@@ -102,23 +106,6 @@
 {
     [MBProgressHUDUtil ErrorWithText:@"登录失败" inView:self.view];
     [self.tableView setMessage:@"网络错误，请稍后尝试" type:NoDatasourceTypeError];
-}
-
-#pragma mark - Getters
-
-- (UITableView *)tableView
-{
-    if (!_tableView) {
-        UITableView *tableView = [[UITableView alloc] init];
-        @weakify(self)
-        [tableView setRetryBlockIfNeeded:^{
-            @strongify(self)
-            [MBProgressHUDUtil LoadingWithText:@"Loading" inView:self.view];
-        }];
-        [self.view addSubview:tableView];
-        _tableView = tableView;
-    }
-    return _tableView;
 }
 
 @end

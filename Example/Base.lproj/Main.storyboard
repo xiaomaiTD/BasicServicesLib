@@ -74,13 +74,28 @@
                     <view key="view" contentMode="scaleToFill" id="fLh-Kx-XPS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gcT-FZ-Wux">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gcT-FZ-Wux" firstAttribute="top" secondItem="fLh-Kx-XPS" secondAttribute="top" id="1ix-cN-lRi"/>
+                            <constraint firstItem="hCg-3M-1Qt" firstAttribute="trailing" secondItem="gcT-FZ-Wux" secondAttribute="trailing" id="R8d-FF-BNa"/>
+                            <constraint firstItem="hCg-3M-1Qt" firstAttribute="bottom" secondItem="gcT-FZ-Wux" secondAttribute="bottom" id="m9R-Jn-W9n"/>
+                            <constraint firstItem="gcT-FZ-Wux" firstAttribute="leading" secondItem="hCg-3M-1Qt" secondAttribute="leading" id="vgg-i4-ZSr"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="hCg-3M-1Qt"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="gcT-FZ-Wux" id="aiy-ge-OyI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byT-Fc-hpc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2175" y="151"/>
+            <point key="canvasLocation" x="2173.5999999999999" y="150.67466266866569"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Nfp-x8-i8x">
