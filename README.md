@@ -74,58 +74,58 @@ iOS项目基础组件。包含了很多便捷方法和UI组件的扩展；包括
 
 - 关联性的网络请求
 
-  例如登录时，我们的逻辑是先用账号密码获取token值，再用token值获取ticket值，ticket和token都将作为后续网络请求的参数存入到header中。通常这种网络请求都会存在block嵌套的操作。由于block嵌套存在各种弊端，这里我将AFN利用型号量实现了异步任务的同步操作。使用如下:  
+  ~~例如登录时，我们的逻辑是先用账号密码获取token值，再用token值获取ticket值，ticket和token都将作为后续网络请求的参数存入到header中。通常这种网络请求都会存在block嵌套的操作。由于block嵌套存在各种弊端，这里我将AFN利用型号量实现了异步任务的同步操作。使用如下:  
 
-  ```objective-c
-  [URLSessionTaskResponse setResponseSuccessCode:200 forKeyAddition:@"code"];
-  [URLSessionTaskResponse setResponseErrorMessageKeyAddition:@"msg"];    
+  ~~```objective-c
+  ~~[URLSessionTaskResponse setResponseSuccessCode:200 forKeyAddition:@"code"];
+  ~~[URLSessionTaskResponse setResponseErrorMessageKeyAddition:@"msg"];    
   
-  URLSessionTaskURL *url0 = [[URLSessionTaskURL alloc] initWithBaseURL:@"url0" relativeURL:@"rest/login/loginByName"];
-  URLSessionTaskURL *url1 = [[URLSessionTaskURL alloc] initWithBaseURL:@"url1" relativeURL:@"rest/auth/getTokenByTicket"];
+  ~~URLSessionTaskURL *url0 = [[URLSessionTaskURL alloc] initWithBaseURL:@"url0" relativeURL:@"rest/login/loginByName"];
+  ~~URLSessionTaskURL *url1 = [[URLSessionTaskURL alloc] initWithBaseURL:@"url1" relativeURL:@"rest/auth/getTokenByTicket"];
       
-  __block URLSessionTaskResponse *response0 = nil;
+  ~~__block URLSessionTaskResponse *response0 = nil;
   
-  __block URLSessionTaskResponse *response1 = nil;
+  ~~__block URLSessionTaskResponse *response1 = nil;
   
-  URLSessionChainTask *chainTask = [[URLSessionChainTask alloc] initWithPrepare:^(NSInteger index, URLSessionTask *task) {
-    if (index == 0)
-    {
-      URLSessionTaskParams *params = [[URLSessionTaskParams alloc] initWithParams:@{@"name":@"100021", @"password":@"123456", @"systemCode":@"ISCC_MOBILE"}];
-      task.params = params;
-    }
-    else
-    {
-      URLSessionTaskParams *params = [[URLSessionTaskParams alloc] initWithParams:@{@"ticketId":[response0.response safetyValueForKeyAddition:@"data.ticket"]}];
-      task.method = URLSessionTaskMethodGET;
-      task.params = params;
-    }
-  } progress:^(NSInteger index, double progress) {
-    DEV_LOG(@"progress = %f", progress);
-  } success:^(NSInteger index, URLSessionTaskResponse *response) {
-    if (index == 0) {
-      response0 = response;
-    }
-    else
-    {
-      response1 = response;
-      DEV_LOG(@"%@", response1.response);
-      if (response1.correct) {
-        [MBProgressHUDUtil SuccessWithText:@"登录成功" inView:self.view];
-      }
-    }
-  } failure:^(NSInteger index, NSError *error) {
-    DEV_LOG(@"error = %@", error);
-    [MBProgressHUDUtil ErrorWithText:@"登录失败" inView:self.view];
-  }];
+  ~~URLSessionChainTask *chainTask = [[URLSessionChainTask alloc] initWithPrepare:^(NSInteger index, URLSessionTask *task) {
+    ~~if (index == 0)
+    ~~{
+      ~~URLSessionTaskParams *params = [[URLSessionTaskParams alloc] initWithParams:@{@"name":@"100021", @"password":@"123456", @"systemCode":@"ISCC_MOBILE"}];
+      ~~task.params = params;
+    ~~}
+    ~~else
+    ~~{
+      ~~URLSessionTaskParams *params = [[URLSessionTaskParams alloc] initWithParams:@{@"ticketId":[response0.response safetyValueForKeyAddition:@"data.ticket"]}];
+      ~~task.method = URLSessionTaskMethodGET;
+      ~~task.params = params;
+    ~~}
+  ~~} progress:^(NSInteger index, double progress) {
+    ~~DEV_LOG(@"progress = %f", progress);
+  ~~} success:^(NSInteger index, URLSessionTaskResponse *response) {
+    ~~if (index == 0) {
+      ~~response0 = response;
+    ~~}
+    ~~else
+    ~~{
+      ~~response1 = response;
+      ~~DEV_LOG(@"%@", response1.response);
+      ~~if (response1.correct) {
+        ~~[MBProgressHUDUtil SuccessWithText:@"登录成功" inView:self.view];
+      ~~}
+    ~~}
+  ~~} failure:^(NSInteger index, NSError *error) {
+    ~~DEV_LOG(@"error = %@", error);
+    ~~[MBProgressHUDUtil ErrorWithText:@"登录失败" inView:self.view];
+  ~~}];
   
-  [chainTask addTaskURL:url0];
-  [chainTask addTaskURL:url1];
-  [chainTask send];
+  ~~[chainTask addTaskURL:url0];
+  ~~[chainTask addTaskURL:url1];
+  ~~[chainTask send];
   
-  [MBProgressHUDUtil LoadingWithText:@"正在加载..." inView:self.view contentBackgroundColor:[UIColor colorWithWhite:0 alpha:0.8] maskBackground:NO userInteraction:YES];
-  ```
+  ~~[MBProgressHUDUtil LoadingWithText:@"正在加载..." inView:self.view contentBackgroundColor:[UIColor colorWithWhite:0 alpha:0.8] maskBackground:NO userInteraction:YES];
+  ~~```
 
-  这里需要注意的是prepare代码块是在异步线程回调。
+  ~~这里需要注意的是prepare代码块是在异步线程回调。
 
   修改：由于Block的原因会导致网络请求发送后，视图或控制器无法正常释放，必须等请求回调后才能释放。目前将其修改为代理模式。示例如下：
 
