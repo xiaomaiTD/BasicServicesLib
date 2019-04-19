@@ -29,8 +29,8 @@
     [URLSessionTaskResponse setResponseSuccessCode:200 forKeyAddition:@"code"];
     [URLSessionTaskResponse setResponseErrorMessageKeyAddition:@"msg"];
 
-    URLSessionTaskURL *url0 = [[URLSessionTaskURL alloc] initWithBaseURL:@"http://sccdev.cd.pangu16.com/passport-server" relativeURL:@"rest/login/loginByName"];
-    URLSessionTaskURL *url1 = [[URLSessionTaskURL alloc] initWithBaseURL:@"http://sccdev.cd.pangu16.com/passport-server" relativeURL:@"rest/auth/getTokenByTicket"];
+    URLSessionTaskURL *url0 = [[URLSessionTaskURL alloc] initWithBaseURL:@"***" relativeURL:@"rest/login/loginByName"];
+    URLSessionTaskURL *url1 = [[URLSessionTaskURL alloc] initWithBaseURL:@"***" relativeURL:@"rest/auth/getTokenByTicket"];
 
     URLSessionChainTask *chainTask = [[URLSessionChainTask alloc] initWithDelegate:self];
     [chainTask addTaskURL:url0];
