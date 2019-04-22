@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "BasicServicesLib"
-  s.version      = "1.1.6"
+  s.version      = "1.1.8"
   s.summary      = "The basic service component of the project."
 
   # This description is used to generate tags and improve search results.
@@ -165,6 +165,11 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Classes' do |ss|
+
+		ss.subspec 'YSChainAnimator' do |sss|
+      			sss.source_files = 'BasicServicesLib/Classes/YSChainAnimator/*.{h,m}'
+      			sss.public_header_files = 'BasicServicesLib/Classes/YSChainAnimator/*.h'
+		end
 
 		ss.subspec 'PresentedHUDBasicViewController' do |sss|
       			sss.source_files = 'BasicServicesLib/Classes/PresentedHUDBasicViewController/*.{h,m}'

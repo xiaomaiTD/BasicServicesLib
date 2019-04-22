@@ -22,21 +22,34 @@
 
 #import <UIKit/UIKit.h>
 
-/// 通常情况下，只有UIViewController的view和列表等视图才需要使用
-
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, NoDatasourceType) {
-    NoDatasourceTypeEmpty,
-    NoDatasourceTypeError
-};
+#define YSChainAnimator(layer)  [[YSChainAnimator alloc] initWithLayer:layer]
 
-@interface UIView (NoDatasource)
+typedef NSMutableArray<NSDictionary*> * YSChainAnimatorContainer;
 
-- (void)setMessage:(NSString *)message type:(NoDatasourceType)type;
-- (void)setHiddenNoDatasource;
-- (void)setRetryBlockIfNeeded:(dispatch_block_t)block;
+@interface YSChainAnimator : NSObject {
+    __weak CALayer *_layer;
+    YSChainAnimatorContainer _animations;
+}
+
+- (instancetype)initWithLayer:(CALayer * _Nonnull)layer;
+- (instancetype)initWithView:(UIView * _Nonnull)view;
+
+@property(copy, nonatomic) YSChainAnimator * (^anim) (NSString * _Nullable key, NSString * _Nonnull keyPath);
+@property(copy, nonatomic) YSChainAnimator * (^modify) (void (^ _Nonnull) (CAAnimation * _Nonnull anim));
+@property(copy, nonatomic) YSChainAnimator * (^group) (void);
+@property(copy, nonatomic) void (^run) (void);
+
+@property(copy, nonatomic) YSChainAnimator * (^duration) (NSTimeInterval d);
+@property(copy, nonatomic) YSChainAnimator * (^from) (id v);
+@property(copy, nonatomic) YSChainAnimator * (^to) (id v);
+@property(copy, nonatomic) YSChainAnimator * (^by) (id v);
+@property(copy, nonatomic) YSChainAnimator * (^timing) (CAMediaTimingFunction *v);
+@property(copy, nonatomic) YSChainAnimator * (^hold) (void);
 
 @end
 
 NS_ASSUME_NONNULL_END
+
+        

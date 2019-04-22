@@ -2,6 +2,8 @@
 
 `BasicServicesLib`是一个`iOS`的项目基础组件库。包含了很多的便捷方法和函数；对部分UI组件进行扩展，很方便的实现界面开发；基于`AFN`实现了链式网络请求，利用请求池管理请求的管理周期，使用代理作为回调，避免代码块造成的内存泄露问题；简单的数据库设计方案等...
 
+[更新日志](https://github.com/qiancaox/BasicServicesLib/blob/master/UPDATE.md)
+
 [TOC]
 
 ## 项目依赖库

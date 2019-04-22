@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		28873D0BE0F7B24DE78F52A1 /* Pods_BasicServicesLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF3C680EF1022A4514245C2B /* Pods_BasicServicesLib.framework */; };
+		8C032E71226D4FD2005D4613 /* YSChainAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C032E6F226D4FD2005D4613 /* YSChainAnimator.m */; };
 		8C3E97612244CA2B0036A03A /* NSNotificationCenter+ObserverBlocked.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3E97602244CA2B0036A03A /* NSNotificationCenter+ObserverBlocked.m */; };
 		8C3E97632244D27A0036A03A /* NOTICE.md in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E97622244D27A0036A03A /* NOTICE.md */; };
 		8C96226F223F9669007AD201 /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C96226E223F9668007AD201 /* Functions.m */; };
@@ -64,6 +65,8 @@
 /* Begin PBXFileReference section */
 		2BB3F58A39AD152E44C35F38 /* Pods-BasicServicesLib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicServicesLib.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BasicServicesLib/Pods-BasicServicesLib.debug.xcconfig"; sourceTree = "<group>"; };
 		343C6EBD74034ACDF9DAE2AF /* Pods-BasicServicesLib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicServicesLib.release.xcconfig"; path = "Pods/Target Support Files/Pods-BasicServicesLib/Pods-BasicServicesLib.release.xcconfig"; sourceTree = "<group>"; };
+		8C032E6F226D4FD2005D4613 /* YSChainAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSChainAnimator.m; sourceTree = "<group>"; };
+		8C032E70226D4FD2005D4613 /* YSChainAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSChainAnimator.h; sourceTree = "<group>"; };
 		8C3E975F2244CA2B0036A03A /* NSNotificationCenter+ObserverBlocked.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+ObserverBlocked.h"; sourceTree = "<group>"; };
 		8C3E97602244CA2B0036A03A /* NSNotificationCenter+ObserverBlocked.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+ObserverBlocked.m"; sourceTree = "<group>"; };
 		8C3E97622244D27A0036A03A /* NOTICE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = NOTICE.md; sourceTree = "<group>"; };
@@ -184,6 +187,15 @@
 				FF3C680EF1022A4514245C2B /* Pods_BasicServicesLib.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C032E6E226D4FBC005D4613 /* YSChainAnimator */ = {
+			isa = PBXGroup;
+			children = (
+				8C032E70226D4FD2005D4613 /* YSChainAnimator.h */,
+				8C032E6F226D4FD2005D4613 /* YSChainAnimator.m */,
+			);
+			path = YSChainAnimator;
 			sourceTree = "<group>";
 		};
 		8C8016C1223A02D3001B02DF /* NSString */ = {
@@ -443,6 +455,7 @@
 		8CF696B12239FAF000DCECC7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8C032E6E226D4FBC005D4613 /* YSChainAnimator */,
 				8C8016CD223A0437001B02DF /* NoDatasourceView */,
 				8C8016CC223A041D001B02DF /* PresentedHUDBasicViewController */,
 				8C8016CB223A040C001B02DF /* UIRelayoutButton */,
@@ -620,6 +633,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C032E71226D4FD2005D4613 /* YSChainAnimator.m in Sources */,
 				8CF696EA2239FAF000DCECC7 /* UIView+NoDatasource.m in Sources */,
 				8CF696EF2239FAF000DCECC7 /* URLSessionTask.m in Sources */,
 				8CF696E32239FAF000DCECC7 /* UIView+UINib.m in Sources */,
