@@ -12,6 +12,7 @@
 		8C3E97632244D27A0036A03A /* NOTICE.md in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E97622244D27A0036A03A /* NOTICE.md */; };
 		8C96226F223F9669007AD201 /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C96226E223F9668007AD201 /* Functions.m */; };
 		8CA2394A22438AA000DFCC9B /* NSDate+NSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA2394922438AA000DFCC9B /* NSDate+NSCalendar.m */; };
+		8CA36A3B224B375300321F97 /* View.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA36A3A224B375300321F97 /* View.m */; };
 		8CEE8D002244B0120057BB3E /* NSObject+KVOBlocked.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEE8CFF2244B0120057BB3E /* NSObject+KVOBlocked.m */; };
 		8CEE8D062244BCA10057BB3E /* UIControl+SelectorBlocked.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEE8D052244BCA10057BB3E /* UIControl+SelectorBlocked.m */; };
 		8CF030BE224336620083DB55 /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF030BD224336620083DB55 /* UIImage+Snapshot.m */; };
@@ -71,6 +72,8 @@
 		8C98B7A5223A310F00D547E5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CA2394822438AA000DFCC9B /* NSDate+NSCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+NSCalendar.h"; sourceTree = "<group>"; };
 		8CA2394922438AA000DFCC9B /* NSDate+NSCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+NSCalendar.m"; sourceTree = "<group>"; };
+		8CA36A39224B375300321F97 /* View.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = View.h; sourceTree = "<group>"; };
+		8CA36A3A224B375300321F97 /* View.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = View.m; sourceTree = "<group>"; };
 		8CD3BE252227787600006DEA /* BasicServicesLib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicServicesLib.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CEE8CFE2244B0120057BB3E /* NSObject+KVOBlocked.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+KVOBlocked.h"; sourceTree = "<group>"; };
 		8CEE8CFF2244B0120057BB3E /* NSObject+KVOBlocked.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVOBlocked.m"; sourceTree = "<group>"; };
@@ -373,6 +376,8 @@
 				8CF696782239FAAF00DCECC7 /* TableViewController.m */,
 				8CF6967A2239FAAF00DCECC7 /* ViewController.h */,
 				8CF696712239FAAF00DCECC7 /* ViewController.m */,
+				8CA36A39224B375300321F97 /* View.h */,
+				8CA36A3A224B375300321F97 /* View.m */,
 				8C98B7A5223A310F00D547E5 /* Info.plist */,
 				8CF6966F2239FAAF00DCECC7 /* Assets.xcassets */,
 				8CF696702239FAAF00DCECC7 /* order_list.geojson */,
@@ -526,7 +531,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = Luckeyhill;
+				ORGANIZATIONNAME = yeeshe;
 				TargetAttributes = {
 					8CD3BE242227787600006DEA = {
 						CreatedOnToolsVersion = 10.1;
@@ -620,6 +625,7 @@
 				8CF696E32239FAF000DCECC7 /* UIView+UINib.m in Sources */,
 				8CF696DA2239FAF000DCECC7 /* NSString+Pinyin.m in Sources */,
 				8CF696DB2239FAF000DCECC7 /* UIWindow+TransitionRootVc.m in Sources */,
+				8CA36A3B224B375300321F97 /* View.m in Sources */,
 				8CF030BE224336620083DB55 /* UIImage+Snapshot.m in Sources */,
 				8C3E97612244CA2B0036A03A /* NSNotificationCenter+ObserverBlocked.m in Sources */,
 				8CF696E72239FAF000DCECC7 /* NSString+UIColor.m in Sources */,
