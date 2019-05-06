@@ -27,6 +27,12 @@
     _textView.placeholder = @"我是占位符";
     _textView.text = @"阿卡丽聚隆科技垃圾速度来看风景埃里克森";
     
+    [self.view makeToast:@"在北京时间5月6日，勇士队主帅史蒂夫-科尔"];
+    [self.view makeIndicator:@"正在加载"];
+    DispatchAfter(8, ^{
+        [self.view makeIndicatorSuccess:@"成功"];
+    });
+    
 //    NSDictionary *dict = @{ @"data" : @{
 //                                         @"list" : @[ @8.627, @2, @3 ]
 //                                         }
