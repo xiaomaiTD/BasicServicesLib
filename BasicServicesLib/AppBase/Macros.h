@@ -88,8 +88,8 @@
 #define kScreenBounds               ([UIScreen mainScreen].bounds)
 #define kScreenScale                ([UIScreen mainScreen].scale)
 #define kAppStatusBarHeight         (CGRectGetHeight(Application.statusBarFrame))
-#define kScreenWidth                (CGRectGetWidth(ScreenBounds))
-#define kScreenHeight               (CGRectGetHeight(ScreenBounds))
+#define kScreenWidth                (CGRectGetWidth(kScreenBounds))
+#define kScreenHeight               (CGRectGetHeight(kScreenBounds))
 #define kSysVersion                 ([[UIDevice currentDevice] systemVersion])
 
 #define iOS9OrLater         (([kSysVersion floatValue] >= 9.0) ? (YES):(NO))

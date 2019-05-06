@@ -71,7 +71,7 @@
     [[NSScanner scannerWithString:gString] scanHexInt:&g];
     [[NSScanner scannerWithString:bString] scanHexInt:&b];
     
-    return ColorRGBA((r / 255.0f), (g / 255.0f), (b / 255.0f), alpha);
+    return ColorRGBA(r, g, b, alpha);
 }
 
 @end
