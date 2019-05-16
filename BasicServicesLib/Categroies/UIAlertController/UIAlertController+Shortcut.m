@@ -116,7 +116,7 @@
         {
             UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:arg style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 if (handler) {
-                    handler(UIAlertActionStyleDefault, 0);
+                    handler(UIAlertActionStyleDefault, index);
                 }
             }];
             [alertController addAction:defaultAction];

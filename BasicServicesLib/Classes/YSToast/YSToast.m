@@ -166,8 +166,6 @@
         frame = self.superview.bounds;
     }
     
-    self.contentSize = _CGSize(textSize.width+2*self.margin, textSize.height+2*self.margin);
-    
     if (self.position == YSToastPositionCenter) {
         frame.origin = _CGPoint(self.superview.width/2-frame.size.width/2, self.superview.height/2-frame.size.height/2);
     }
@@ -176,7 +174,9 @@
         frame.origin = _CGPoint(self.superview.width/2-frame.size.width/2, self.superview.height-POSITION_BOTTOM_SAPCING-frame.size.height);
     }
     
-    if (!CGRectEqualToRect(self.frame, frame)) {
+    if (!CGRectEqualToRect(self.frame, frame) || !CGSizeEqualToSize(textSize, self.contentSize))
+    {
+        self.contentSize = _CGSize(textSize.width+2*self.margin, textSize.height+2*self.margin);
         self.frame = frame;
     }
 }
